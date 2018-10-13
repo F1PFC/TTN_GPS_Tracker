@@ -27,13 +27,8 @@ void writescreen_2();             //waiting for GPS fix screen
 void writescreen_3();             //have new GPS fix screen
 void writescreen_4();             //EV_TXCOMPLETE screen
 void writescreen_5();             //Welcome screen
-//void writescreen_Alert1();        //No GPS fix warning
 
-//void writeSNR(byte col, byte row);
-//void revert_Screen();
 void add_Tracker_Location();
-//void add_Tracker_DD();
-//void Display_Status();
 
 void writePktCount(byte col, byte row, unsigned int packetcount);
 

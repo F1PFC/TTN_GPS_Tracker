@@ -1,4 +1,4 @@
-//TTN_GPS_TRACKER_101018.ino
+//TN_GPS_TRACKER_CayenneLPP_121018.ino
 
 //**************************************************************************************************
 // Important Note:
@@ -6,6 +6,9 @@
 // Make changes to this Program file at your peril
 //
 // Configuration changes should be made in the configuration.h file not here !
+//
+// See seperate document 'Configuring the TTN_GPS_TRACKER.PDF' for information on setting up the 
+// configuration.h file. 
 //
 //**************************************************************************************************
 
@@ -26,6 +29,8 @@
   Added GPSwaitfix before program starts.
   Remove print of GPS output to monitor
   Change get_coords() to always wait for new GPS fix
+  Add option to attache a I2C LCD display via a PCG8274 backpack
+  Add option to attach a SSD1306 OLED display 
 
 *********************************************************************/
 
@@ -33,17 +38,19 @@
 #define dateproduced "101018"
 #define aurthorname "Stuart Robinson"
 
-#include <lmic.h>                                //https://github.com/matthijskooijman/arduino-lmic 
-#include <hal/hal.h>                             //https://github.com/matthijskooijman/arduino-lmic
+#include <lmic.h>                                 //https://github.com/matthijskooijman/arduino-lmic 
+#include <hal/hal.h>                              //https://github.com/matthijskooijman/arduino-lmic
 
 #include "configuration.h"
 
 #include <SPI.h>                                  //standard Arduino library
 #include <TinyGPS++.h>                            //https://github.com/mikalhart/TinyGPSPlus
 
+#define LPP_GPS 136
+
 #include Board_Definition                         //include previously defined board definition file
 
-float TRLat, TRLon, TRAlt, TRhdopGPS;
+float TRLat, TRLon, TRAlt, TRhdopGPS, gps_increment;
 unsigned int lora_TXpacketCount;
 
 
@@ -63,10 +70,11 @@ void os_getDevEui (u1_t* buf) { }
 void os_getDevKey (u1_t* buf) { }
 
 
-uint8_t coords[9];
+uint8_t coords[11];
 static osjob_t sendjob;
 static osjob_t initjob;
 uint8_t cursor = 0;
+uint8_t channel;
 
 
 //Pin mapping
@@ -117,17 +125,31 @@ void get_coords ()
   writescreen_2();
 #endif
 
-  Serial.println(F("Waiting for new GPS Fix"));
 
+  Serial.println(F("Waiting for GPS Fix"));
   while (!gpsWaitFix());                               //wait for another GPS fix
   digitalWrite(LED1, LOW);                             //finished with GPS, turn LED off
+  Serial.println(F("Have GPS Fix"));
 
-  Serial.println(F("New GPS Fix"));
 
 #ifdef Use_Display
   writescreen_3();
 #endif
 
+
+#ifdef Use_Test_Location
+  Serial.println(F("Use GPS Test Location"));
+  TRLat = TRLat + gps_increment;
+  TRLon = TRLon + gps_increment;
+  TRAlt = TRAlt + 10;
+  TRhdopGPS = 100;
+  TRhdopGPS = TRhdopGPS / 100;
+  fhdopGPS = gps.hdop.value();
+  gps_increment = gps_increment + 0.02;
+#endif
+
+
+#ifndef Use_Test_Location
   TRLat = gps.location.lat();
   TRLon = gps.location.lng();
   if (gps.altitude.isValid())
@@ -142,12 +164,31 @@ void get_coords ()
   TRhdopGPS = gps.hdop.value();
   TRhdopGPS = TRhdopGPS / 100;
   fhdopGPS = gps.hdop.value();
+#endif
 
-  int32_t lat = ((gps.location.lat() + 90) / 180) * 16777215;
-  int32_t lon = ((gps.location.lng() + 180) / 360) * 16777215;
-  int16_t altitudeGPS = TRAlt;
-  int8_t hdopGPS = (fhdopGPS / 10);
 
+  int32_t lat = TRLat * 10000;
+  int32_t lon = TRLon * 10000;
+  int16_t altitudeGPS = TRAlt * 100;
+  int8_t hdopGPS = fhdopGPS;
+
+
+channel = 0x01;
+  coords[0] = channel;
+  coords[1] = LPP_GPS;
+  coords[2] = lat >> 16;
+  coords[3] = lat >> 8;
+  coords[4] = lat;
+  coords[5] = lon >> 16;
+  coords[6] = lon >> 8;
+  coords[7] = lon;
+  coords[8] = altitudeGPS;
+  coords[9] = altitudeGPS >> 8;
+  coords[10] = hdopGPS;
+
+
+
+/*
   coords[0] = lat >> 16;
   coords[1] = lat >> 8;
   coords[2] = lat;
@@ -157,6 +198,21 @@ void get_coords ()
   coords[6] = altitudeGPS >> 8;
   coords[7] = altitudeGPS;
   coords[8] = hdopGPS;
+*/
+
+  channel = 0x01;
+  coords[0] = channel;
+  coords[1] = LPP_GPS;
+  coords[2] = lat >> 16;
+  coords[3] = lat >> 8;
+  coords[4] = lat;
+  coords[5] = lon >> 16;
+  coords[6] = lon >> 8;
+  coords[7] = lon;
+  coords[8] = altitudeGPS;
+  coords[9] = altitudeGPS >> 8;
+  coords[10] = hdopGPS;
+
 
 #ifdef Use_Display
   writescreen_1();
@@ -167,7 +223,6 @@ void get_coords ()
 
 void do_send(osjob_t* j)
 {
-
   //Check if there is not a current TX/RX job running
   if (LMIC.opmode & OP_TXRXPEND)
   {
@@ -210,8 +265,7 @@ void onEvent (ev_t ev)
 
     case EV_JOINED:
       Serial.println(F("EV_JOINED"));
-      // Disable link check validation (automatically enabled
-      // during join, but not supported by TTN at this time).
+      // Disable link check validation (automatically enabled during join, but not supported by TTN at this time).
       LMIC_setLinkCheckMode(0);
       break;
 
@@ -228,7 +282,7 @@ void onEvent (ev_t ev)
       break;
 
     case EV_TXCOMPLETE:
-      Serial.println(F("EV_TXCOMPLETE (includes waiting for RX windows)"));
+      Serial.println(F("EV_TXCOMPLETE"));
       lora_TXpacketCount++;
       
       #ifdef Use_Display
@@ -247,7 +301,7 @@ void onEvent (ev_t ev)
       }
 
       //Schedule next transmission
-      os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL), do_send);
+      os_setTimedCallback(&sendjob, os_getTime() + sec2osticks(TX_INTERVAL_SECONDS), do_send);
       break;
 
     case EV_LOST_TSYNC:
@@ -274,9 +328,7 @@ void onEvent (ev_t ev)
     default:
       Serial.println(F("Unknown event"));
       break;
-
   }
-
 }
 
 
@@ -290,10 +342,12 @@ void Watchdog_Pulse()
 void setup()
 {
   Serial.begin(115200);
+  Serial.println();
   Serial.println(F(programname));
   Serial.println(F(dateproduced));
   Serial.println(F(aurthorname));
-
+  Serial.println();
+  
   GPSserial.begin(GPSBaud);
 
   pinMode(LED1, OUTPUT);
@@ -309,10 +363,18 @@ void setup()
   writescreen_2();                               //write intial messager to display
 #endif
 
-  Serial.println(F("Waiting for Initial GPS Fix"));
+  Serial.println(F("Waiting for Startup GPS Fix"));
   digitalWrite(LED1, HIGH);                      //LED on to indicate GPS check
   while (!gpsWaitFix());                         //wait for intial GPS fix
   digitalWrite(LED1, LOW);
+
+
+  #ifdef Use_Test_Location
+  TRLat = TestLatitude;
+  TRLon = TestLongitude;
+  TRAlt = TestAltitude;
+#endif
+
 
   os_init();                                     //LMIC init
   LMIC_reset();                                  //Reset the MAC state. Session and pending data transfers will be discarded.

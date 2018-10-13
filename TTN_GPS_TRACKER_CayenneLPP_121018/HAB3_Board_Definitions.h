@@ -52,4 +52,3 @@
 #define MEMORY_CS -1                  //unused pin          
 
 #define ADMultiplier 10               //multiplier for supply volts calculation
-
