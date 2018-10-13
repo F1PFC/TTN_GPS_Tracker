@@ -47,18 +47,21 @@ Load the EchoGPS\_Softwareserial\_Test.ino program into the Arduino IDE,
 makes sure the Arduino IDE is set to use the Arduino Pro Mini at 3.3V
 8Mhz, see below;
 
-Picture 1
+![default](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/1.jpg)
+
 
 The EchoGPS\_Softwareserial\_Test uses the softwareserial library
 program to read the GPS, you need to define the pins that the GPS is
-connected to, see these two defines at the start of the program;
+connected to, see these two defines at the start of the Echo GPS test program;
 
 \#define GPSTX A2 //pin number for TX output - Arduino into GPS
 
 \#define GPSRX A3 //pin number for RX input - To Arduino from GPS
 
 Also define the pin number that the LED is connected to, it will be used
-by the TTN\_GPS\_Tracker code. Some of the LoRaTracker boards allow the
+by the TTN\_GPS\_Tracker code. 
+
+Some of the LoRaTracker boards allow the
 GPS to be powered off (such as the LCD receiver) if your board has this
 facility you need to define the pin used to control the GPS power,
 putting this pin low turns on the GPS;
