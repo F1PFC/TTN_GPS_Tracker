@@ -74,7 +74,7 @@ Load the program and when it runs the LED should flash briefly at
 startup and then the serial monitor should show GPS output similar to
 this;
 
-<span style="line-height: 0.4;">
+<span style="line-height: 0;">
 
 EchoGPS\_Softwareserial\_Test
 
