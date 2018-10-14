@@ -3,7 +3,7 @@ TTN\_GPS\_Tracker\_Setup\_Instructions
 These instructions describe the building of a GPS tracker that uses The
 Things Network (TTN) to receive the trackers location. Once the location
 data is received by the TTN the trackers location can be viewed online
-on a Internet enabled device or passed to online mapping applications.
+on a Internet enabled device or passed to on-line mapping applications.
 
 The build and testing of the tracker itself is described first. Then the
 configuration required for TTN is described and finally sending the
@@ -47,7 +47,7 @@ Load the EchoGPS\_Softwareserial\_Test.ino program into the Arduino IDE,
 makes sure the Arduino IDE is set to use the Arduino Pro Mini at 3.3V
 8Mhz, see below;
 
-![default](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/1.jpg)
+![Picture 1](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/1.jpg)
 
 
 The EchoGPS\_Softwareserial\_Test uses the softwareserial library
@@ -74,67 +74,35 @@ Load the program and when it runs the LED should flash briefly at
 startup and then the serial monitor should show GPS output similar to
 this;
 
-<span style="line-height: 0;">
 
-EchoGPS\_Softwareserial\_Test
 
-10/10/2018
-
-Stuart Robinson
-
-$GNVTG,,,,,,,,,N*2E
-
-$GNGGA,102207.00,
-
-$GNRMC,102208.00,V,,,,,,,121018,,,N\*61
-
-$GNVTG,,,,,,,,,N\*2E
-
-$GNGGA,102208.00,,,,,0,00,99.99,,,,,,\*71
-
-$GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
-
-$GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
-
-$GPGSV,1,1,02,08,,,25,22,,,34\*73
-
-$GLGSV,1,1,00\*65
-
-$GNGLL,,,,,102208.00,V,N\*5D
-
-$GNRMC,102209.00,V,,,,,,,121018,,,N\*60
-
-$GNVTG,,,,,,,,,N\*2E
-
-$GNGGA,102209.00,,,,,0,00,99.99,,,,,,\*70
-
-$GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
-
-$GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
-
-$GPGSV,1,1,02,08,,,25,22,,,35\*72
-
-$GLGSV,1,1,00\*65
-
-$GNGLL,,,,,102209.00,V,N\*5C
-
-$GNRMC,102210.00,V,,,,,,,121018,,,N\*68
-
-$GNVTG,,,,,,,,,N\*2E
-
-$GNGGA,102210.00,,,,,0,00,99.99,,,,,,\*78
-
-$GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
-
-$GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
-
-$GPGSV,1,1,02,08,,,25,22,,,35\*72
-
-$GLGSV,1,1,00\*65
-
-$GNGLL,,,,,102210.00,V,N\*54
-
-<span style="line-height: 1.5;">
+        EchoGPS\_Softwareserial\_Test\_10/10/2018
+        Stuart Robinson
+        $GNVTG,,,,,,,,,N\*2E
+        $GNRMC,102208.00,V,,,,,,,121018,,,N\*61
+        $GNVTG,,,,,,,,,N\*2E
+        $GNGGA,102208.00,,,,,0,00,99.99,,,,,,\*71
+        $GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
+        $GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
+        $GPGSV,1,1,02,08,,,25,22,,,34\*73
+        $GLGSV,1,1,00\*65
+        $GNGLL,,,,,102208.00,V,N\*5D
+        $GNRMC,102209.00,V,,,,,,,121018,,,N\*60
+        $GNVTG,,,,,,,,,N\*2E
+        $GNGGA,102209.00,,,,,0,00,99.99,,,,,,\*70
+        $GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
+        $GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
+        $GPGSV,1,1,02,08,,,25,22,,,35\*72
+        $GLGSV,1,1,00\*65
+        $GNGLL,,,,,102209.00,V,N\*5C
+        $GNRMC,102210.00,V,,,,,,,121018,,,N\*68
+        $GNVTG,,,,,,,,,N\*2E
+        $GNGGA,102210.00,,,,,0,00,99.99,,,,,,\*78
+        $GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
+        $GNGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99\*2E
+        $GPGSV,1,1,02,08,,,25,22,,,35\*72
+        $GLGSV,1,1,00\*65
+        $GNGLL,,,,,102210.00,V,N\*54
 
 Note that the two NMEA sentences that normally contain the location
 data, \$GNGGA and \$GNRMC are empty of the latitude and longitude data.
@@ -151,9 +119,7 @@ GPS with fix output.
 
 Note that a lot of the Ublox GPSs default to the \$GNGGA and \$GNRMC
 NMEA sentence format, other GPSs may use \$GPGGA and \$GPRMC formats.
-The GPS library used in the
-
-TTN\_GPS\_Tracker code recognises both types.
+The GPS library used in the TTN\_GPS\_Tracker code recognises both types.
 
 Testing the LoRa device
 -----------------------
