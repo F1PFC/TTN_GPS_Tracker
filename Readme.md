@@ -286,10 +286,9 @@ And select the 'Sign Up' button at the top of the screen;
 Provide the details for your new account, you will need an email
 address;
 
-<p align="center">
 <img
-src="https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/3.jpg" width="300"/>
-</p>
+src="https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/3.jpg" width="450"/>
+
 
 You will get an email with a link to confirm your account.
 
