@@ -279,13 +279,14 @@ Goto the Things Network website;
 
 And select the 'Sign Up' button at the top of the screen;
 
-
-
 ![Picture 2](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/2.jpg)
+
+
 
 
 Provide the details for your new account, you will need an email
 address;
+
 
 ![Picture 3](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/3.jpg)
 
@@ -317,19 +318,13 @@ Select applications;
 ![Picture 4B](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/4B.jpg)
 
 
-
 If you have created an application before you will see a list of them,
-otherwise you just see a screen like below, select 'Add Application' on
-the top right of the window below;
-
+otherwise you just see a screen like below. 
 
 ![Picture 4C](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/4C.jpg)
 
 
-
-![](Pictures/1000000000000441000000ADBD849296102FB7CA.jpg){width="17cm"
-height="2.701cm"}
-
+Select 'Add Application'. 
 Give your application a name, but note these limitations; application ID
 can only consist of lowercase alphanumeric characters, with no
 consecutive -- or \_ characters and it cannot start or end with a - or a
@@ -337,32 +332,71 @@ consecutive -- or \_ characters and it cannot start or end with a - or a
 
 We call our application; 'TTN\_GPS\_Tracker'
 
-Picture 5
+![Picture 5](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/5.jpg)
+
 
 Ensure that the ttn-handler-eu is selected in the 'Handler registration'
 box.
 
-When you have completed the form, click on 'Add application', and you
+When you have completed the form, click on 'Add application', at the bottom of the screen and you
 will see the application overview.
 
-There are no devices configured for the application, so we need to add
+![Picture 8](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/8.jpg)
+
+
+
+Sinced this is a new application there are no devices yet configured for the application, so we need to add
 one, click on devices at the top of the screen;
 
-Then click on 'register device'. Provide a name for the Device, such as
-'ttn\_gps\_tracker\_1' and enter it in the Device ID box. Enter a fake
-Device EUI such as 00 11 22 33 44 55 66 77, we can change it later. Then
+
+![Picture 9](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/9.jpg)
+
+
+
+Then click on 'register device'. 
+
+![Picture 10](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/10.jpg)
+
+You will see the register device screen;
+
+![Picture 12](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/12.jpg)
+
+
+Provide a name for the Device, such as
+'ttn\_gps\_tracker\_1' and enter it in the Device ID box. 
+
+![Picture 13](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/13.jpg)
+
+
+
+Enter a Device EUI such as 00 11 22 33 44 55 66 77. This device EUI needs to be unique and we will need it later. You can enter any number you like, its in hexadecimal, but if the number already exists you will get a warning.  
+
+![Picture 14](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/14.jpg)
+
+Then
 click on 'Register' bottom right of the screen;
 
+![Picture 15](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/15.jpg)
+
 We should then see the device overview screen;
+
+![Picture 16](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/16.jpg)
+
 
 Click on settings from the selection at the top of the device overview
 screen;
 
-![](Pictures/10000000000000F000000039CC0774467136C9DB.jpg){width="6.35cm"
-height="1.508cm"}
+![Picture 17](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/17.jpg)
+
 
 When the settings screen appears find the Activation Method box and
-ensure ABP is selected and highlighted. Then click 'Save' at the bottom
+ensure ABP is selected and highlighted. 
+
+
+![Picture 18](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/18.jpg)
+
+
+Then click 'Save' at the bottom
 of the screen.
 
 We are using ABP activation so we need to copy the 'Network Session Key'
