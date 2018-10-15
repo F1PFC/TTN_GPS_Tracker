@@ -280,7 +280,7 @@ one, click on devices at the top of the screen;
 
 
 <br><br>
-<img src="/Pictures/9.jpg" width="450"/>
+<img src="/Pictures/9.jpg" width="650"/>
 <br><br>
 
 
@@ -288,12 +288,12 @@ one, click on devices at the top of the screen;
 Then click on 'register device'. 
 
 <br><br>
-<img src="/Pictures/10.jpg" width="450"/>
+<img src="/Pictures/10.jpg" width="650"/>
 <br><br>
 
 You will see the register device screen;
 <br><br>
-<img src="/Pictures/12.jpg" width="450"/>
+<img src="/Pictures/12.jpg" width="650"/>
 <br><br>
 
 
@@ -302,53 +302,53 @@ Provide a name for the Device, such as
 
 You will see the register device screen;
 <br><br>
-<img src="/Pictures/13.jpg" width="450"/>
+<img src="/Pictures/13.jpg" width="650"/>
 <br><br>
 
 
 Enter a Device EUI such as 00 11 22 33 44 55 66 77. 
 
 <br><br>
-<img src="/Pictures/14.jpg" width="450"/>
+<img src="/Pictures/14.jpg" width="650"/>
 <br><br>
 
 Then click on 'Register' bottom right of the screen;
 
 <br><br>
-<img src="/Pictures/15.jpg" width="450"/>
+<img src="/Pictures/15.jpg" width="650"/>
 <br><br>
 
 
 Note that the Device EUI needs to be unique and we will need it later. You can enter any number you like, its in hexadecimal, so 00 11 AA BB CC DD EE FF would also be acceptable, but if the number already exists you will get a warning.  
 
 <br><br>
-<img src="/Pictures/14A.jpg" width="450"/>
+<img src="/Pictures/14A.jpg" width="650"/>
 <br><br>
 
 We should now have **DEVICE OVERVIEW**;
 
 <br><br>
-<img src="/Pictures/16.jpg" width="450"/>
+<img src="/Pictures/16.jpg" width="650"/>
 <br><br>
 
 This is the initial default device overview and assumes we will be using OTAA (over the air authentication) but we want to use ABP (activation by personalisation), so we need to make a change. Click on settings from the selection at the top of the device overview
 screen;
 
 <br><br>
-<img src="/Pictures/17.jpg" width="450"/>
+<img src="/Pictures/17.jpg" width="650"/>
 <br><br>
 
 When the settings screen appears find the Activation Method box and
 ensure ABP is selected and highlighted. 
 
 <br><br>
-<img src="/Pictures/18.jpg" width="450"/>
+<img src="/Pictures/18.jpg" width="650"/>
 <br><br>
 
 Then click 'Save' at the very bottom of the screen. Note that the **DEVICE OVERVIEW** screen has now changed;
 
 <br><br>
-<img src="/Pictures/18A.jpg" width="450"/>
+<img src="/Pictures/18A.jpg" width="650"/>
 <br><br>
 
 There is now a 'Network Session Key' and 'App Session Key' boxes displayed. We need to copy these values into our Arduino program. 
@@ -429,7 +429,7 @@ To see if the location data from your tracker is getting into  the Things Networ
 applications and then (for this example) select the TTN\_GPS_Tracker\_application, you should see this screen;
 
 <br><br>
-<img src="/Pictures/25.jpg" width="450"/>
+<img src="/Pictures/25.jpg" width="650"/>
 <br><br>
 
 
@@ -438,7 +438,7 @@ Application data packets arriving, click on a line to expand and show the data f
 
 
 <br><br>
-<img src="/Pictures/25A.jpg" width="450"/>
+<img src="/Pictures/25A.jpg" width="650"/>
 <br><br>
 
 
@@ -449,7 +449,7 @@ Application data packets arriving, click on a line to expand and show the data f
 Goto http://www.mydevices.com\ and select 'Sign up for Free'
 
 <br><br>
-<img src="/Pictures/26.jpg" width="450"/>
+<img src="/Pictures/26.jpg" width="650"/>
 <br><br>
 
 
@@ -457,13 +457,13 @@ provide the details to create your account;
 
 
 <br><br>
-<img src="/Pictures/27.jpg" width="450"/>
+<img src="/Pictures/27.jpg" width="650"/>
 <br><br>
 
 Select 'All Devices'
 
 <br><br>
-<img src="/Pictures/29.jpg" width="450"/>
+<img src="/Pictures/29.jpg" width="650"/>
 <br><br>
 
 
@@ -472,14 +472,14 @@ Select 'All Devices'
 You should see the 'Devices and Widgets' screen, scroll down till you find the 'The Things Network'. and select it.
 
 <br><br>
-<img src="/Pictures/30.jpg" width="450"/>
+<img src="/Pictures/30.jpg" width="650"/>
 <br><br>
 
 
 On the next screen locate 'Cayenne LPP' and select it.
 
 <br><br>
-<img src="/Pictures/31.jpg" width="450"/>
+<img src="/Pictures/31.jpg" width="650"/>
 <br><br>
 
 
@@ -487,13 +487,13 @@ In the next screen get the DevEUI we saved earlier and enter it in the DevEUI bo
 
 
 <br><br>
-<img src="/Pictures/31A.jpg" width="450"/>
+<img src="/Pictures/31A.jpg" width="650"/>
 <br><br>
 
 If you get a 'Conflict' Error then the DevEUI your using is not unique, you need to go back to the TTN console and select another. If all goes well you should see a blank dashboard;
 
 <br><br>
-<img src="/Pictures/31B.jpg" width="450"/>
+<img src="/Pictures/31B.jpg" width="650"/>
 <br><br>
 
 Note the URL of this screen contains a number, highlighted in red, the number from the screen in this case is;
@@ -508,44 +508,44 @@ Your number will obviously be different. You need to copy this and save it, we n
 Log back into your TTN console and go to Application overview and select 'Integrations' 
 
 <br><br>
-<img src="/Pictures/33.jpg" width="450"/>
+<img src="/Pictures/33.jpg" width="650"/>
 <br><br>
 
 Select 'Add Integration'
 
 <br><br>
-<img src="/Pictures/34.jpg" width="450"/>
+<img src="/Pictures/34.jpg" width="650"/>
 <br><br>
 
 Select 'Cayenne'
 
 <br><br>
-<img src="/Pictures/35.jpg" width="450"/>
+<img src="/Pictures/35.jpg" width="650"/>
 <br><br>
 
 For the 'Process ID' enter thr number copied from the Cayenne dashboard URL earlier, and click on 'default key' for the Access key. Then click on 'Add Integration'
 
 <br><br>
-<img src="/Pictures/36.jpg" width="450"/>
+<img src="/Pictures/36.jpg" width="650"/>
 <br><br>
 
 And you should see the Integration overview screen show a status of 'Running'
 
 <br><br>
-<img src="/Pictures/37.jpg" width="450"/>
+<img src="/Pictures/37.jpg" width="650"/>
 <br><br>
 
 Go back to the Cayenne dashboard and with in a few seconds of the packet being sent a map appears on the dashboard with the location of the tracker;
 
 <br><br>
-<img src="/Pictures/38.jpg" width="450"/>
+<img src="/Pictures/38.jpg" width="650"/>
 <br><br>
 
 To simulate the effect of a moving tracker I programmed the tracker to send a test series of location packets,  simulated a short
 
 
 <br><br>
-<img src="/Pictures/39.jpg" width="450"/>
+<img src="/Pictures/39.jpg" width="650"/>
 <br><br>
 
 
