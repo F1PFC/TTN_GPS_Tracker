@@ -541,7 +541,7 @@ Go back to the Cayenne dashboard and with in a few seconds of the packet being s
 <img src="/Pictures/38.jpg" width="650"/>
 <br><br>
 
-To simulate the effect of a moving tracker I programmed the tracker to send a test series of location packets,  simulated a short
+To simulate the effect of a moving balloon tracker I programmed the tracker to send a test series of location packets, see below;
 
 
 <br><br>
@@ -552,7 +552,7 @@ To simulate the effect of a moving tracker I programmed the tracker to send a te
 ## TTN\_GPS\_Tracker program -- Display option
 
 The TTN\_GPS\_Tracker program has the option to display
-information on a local display, via an I2C connection, either a 20x4 LCD display or a SSD1306 OLED , this option is turned off by default because of this line in the configuration file;
+information on a local display via an I2C connection, either a 20x4 LCD display or a SSD1306 OLED , this option is turned off by default because of this line in the configuration file;
 
 //\#define Use\_Display
 
@@ -575,14 +575,11 @@ the TTN network will ignore the packets until the frame counter reaches
 20, then it will continue to display the payloads in the console again.
 
 This behaviour can give the impression that your node is not working.
-You can disable this behviour for testing purposes, by going to the
-Application overview screen, selecting 'Devices' then select the device
-to configure and then from the 'Device Overview'
+You can disable this behaviour for testing purposes. Go to the
+application overview screen, select 'Devices' then select the device
+to configure and then from the 'Device Overview' screen select 'Settings' on the top right.
 
-And then select 'Settings' on the top right.
-
-At the bottom of the screen of device settings you will see this box,
-'frame counter settings'
+At the bottom of the screen of device settings you will see a box labelled 'frame counter settings'
 
 You can untick this box, and when the node resets the frame counter will
 start from zero and the packets or payloads will not now be rejected. This
