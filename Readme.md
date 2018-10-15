@@ -544,7 +544,7 @@ Go back to the Cayenne dashboard and with in a few seconds of the packet being s
 <img src="/Pictures/38.jpg" width="650"/>
 <br><br>
 
-To simulate the effect of a moving balloon tracker I programmed the tracker to send a test series of location packets, see below;
+To simulate the effect of a moving balloon tracker I programmed the tracker, still in my workshop, to send a test series of location packets, see below;
 
 
 <br><br>
@@ -552,10 +552,10 @@ To simulate the effect of a moving balloon tracker I programmed the tracker to s
 <br><br>
 
 
-## TTN\_GPS\_Tracker program -- Display option
+## TTN\_GPS\_Tracker program - Display option
 
 The TTN\_GPS\_Tracker program has the option to display
-information on a local display via an I2C connection, either a 20x4 LCD display or a SSD1306 OLED , this option is turned off by default because of this line in the configuration file;
+information on a local display connected to the Arduino device via an I2C connection, either a 20x4 LCD display or a SSD1306 OLED. The option to enable the display is turned off by default by this line in the configuration.h file;
 
 //\#define Use\_Display
 
@@ -565,8 +565,8 @@ change the line into;
 
 \#define Use\_Display
 
-Do not enable the display option unless a display is actually attached
-and working. The I2C displays are both 3.3V versions, the 20x4 LCD is connected to I2C via a PCF8574 I\O expander designed for driving the HD44780 controller on the LCD. 
+Do not enable the display option unless the appropriate display is attached
+and working. The displays need to be 3.3V versions. The 20x4 LCD is connected via an I2C PCF8574 I\O expander board specifically designed for driving the HD44780 controller on the LCD. 
 
 
 ### Frame Counter
@@ -584,7 +584,7 @@ to configure and then from the 'Device Overview' screen select 'Settings' on the
 
 At the bottom of the screen of device settings you will see a box labelled 'frame counter settings'
 
-You can untick this box, and when the node resets the frame counter will
+You can un-tick this box, and when the node resets the frame counter will
 start from zero and the packets or payloads will not now be rejected. This
 is OK when testing a node, but do not leave it permanently set.
 
