@@ -48,12 +48,7 @@ Load the EchoGPS\_Softwareserial\_Test.ino program into the Arduino IDE,
 makes sure the Arduino IDE is set to use the Arduino Pro Mini at 3.3V
 8Mhz, see below;  
 
-
-![Picture 1](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/1.jpg)
-
-
 ![Picture 1](/Pictures/1.jpg)
-
 
 
 The EchoGPS\_Softwareserial\_Test uses the softwareserial library
@@ -110,7 +105,7 @@ this;
         $GNGLL,,,,,102210.00,V,N\*54
 
 Note that the two NMEA sentences that normally contain the location
-data, \$GNGGA and \$GNRMC are empty of the latitude and longitude data.
+data, $GNGGA and $GNRMC are empty of the latitude and longitude data.
 This is normal for a GPS that has just been powered up or that is
 located indoors. The $GNGSV senetence tells you that there is one sentence of $GNGSV information and that one GPS satellite has been detected.
 
@@ -122,8 +117,8 @@ like this;
 
 GPS with fix output.
 
-Note that a lot of the Ublox GPSs default to the \$GNGGA and \$GNRMC
-NMEA sentence format, other GPSs may use \$GPGGA and \$GPRMC formats.
+Note that a lot of the Ublox GPSs default to the $GNGGA and $GNRMC
+NMEA sentence format, other GPSs may use $GPGGA and $GPRMC formats.
 The GPS library used in the TTN\_GPS\_Tracker code recognises both types.
 
 ###Testing the LoRa device
@@ -222,17 +217,16 @@ Goto the Things Network website;
 
 And select the 'Sign Up' button at the top of the screen;
 
-<img src="https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/2.jpg" width="450"/>
-
-
+<br><br>
+<img src="/Pictures/2.jpg" width="450"/>
+<br><br>
 
 Provide the details for your new account, you will need an email
 address;
 
-<img
-src="https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/3.jpg" width="450"/>
+<img src="/Pictures/3A.jpg" width="450"/>
 
-
+<br><br>
 You will get an email with a link to confirm your account.
 
 ###Log into your Things Network Account
@@ -242,27 +236,25 @@ Goto the Things Network Website
 <https://www.thethingsnetwork.org/>
 
 And select the login button, top and far right;
-
-![Picture 4](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/4.jpg)
- 
-
+<br><br>
+<img src="/Pictures/4.jpg" width="450"/>
+<br><br>
 Once you have logged in drop down the menu against your name and select
 Console;
 
-![Picture 4A](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/4A.jpg)
-
+<img src="/Pictures/4A.jpg" width="450"/>
+<br><br>
 ###Configuring applications in the TTN console
 
 Select applications;
-
-![Picture 4B](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/4B.jpg)
-
-
+<br><br>
+<img src="/Pictures/4B.jpg" width="450"/>
+<br><br>
 If you have created an application before you will see a list of them,
 otherwise you just see a screen like below. 
-
+<br><br>
 ![Picture 4C](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/4C.jpg)
-
+<br><br>
 
 Select 'Add Application'. 
 Give your application a name, but note these limitations; application ID
