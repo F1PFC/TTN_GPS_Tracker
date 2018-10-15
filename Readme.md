@@ -314,27 +314,26 @@ Enter a Device EUI such as 00 11 22 33 44 55 66 77.
 <img src="/Pictures/14.jpg" width="450"/>
 <br><br>
 
-
-This device EUI needs to be unique and we will need it later. You can enter any number you like, its in hexadecimal, so 00 11 AA BB CC DD EE FF would also be acceptable, but if the number already exists you will get a warning.  
-
-<br><br>
-<img src="/Pictures/14A.jpg" width="450"/>
-<br><br>
-
-Then
-click on 'Register' bottom right of the screen;
+Then click on 'Register' bottom right of the screen;
 
 <br><br>
 <img src="/Pictures/15.jpg" width="450"/>
 <br><br>
 
-We should then see the **DEVICE OVERVIEW** overview screen;
+
+Note that the device EUI needs to be unique and we will need it later. You can enter any number you like, its in hexadecimal, so 00 11 AA BB CC DD EE FF would also be acceptable, but if the number already exists you will get a warning.  
+
+<br><br>
+<img src="/Pictures/14A.jpg" width="450"/>
+<br><br>
+
+We should now have **DEVICE OVERVIEW**;
 
 <br><br>
 <img src="/Pictures/16.jpg" width="450"/>
 <br><br>
 
-Click on settings from the selection at the top of the device overview
+This is the initial default device overview and assumes we will be using OTAA (over the air authentication) but we want to use ABP (activation by personalisation), so we need to make a change. Click on settings from the selection at the top of the device overview
 screen;
 
 <br><br>
@@ -348,28 +347,15 @@ ensure ABP is selected and highlighted.
 <img src="/Pictures/18.jpg" width="450"/>
 <br><br>
 
-Then click 'Save' at the very bottom of the screen.
-
-We are using ABP activation so we need to copy the 'Network Session Key'
-and 'App Session Key' into our Arduino program. Note that the **DEVICE OVERVIEW** screen has now changed;
+Then click 'Save' at the very bottom of the screen. Note that the **DEVICE OVERVIEW** screen has now changed;
 
 <br><br>
-<img src="/Pictures/16.jpg" width="450"/>
+<img src="/Pictures/18A.jpg" width="450"/>
 <br><br>
 
-Note that the 
+There is now a 'Network Session Key' and 'App Session Key' boxes displayed. We need to copy these values into our Arduino program. 
 
-
-
-
-
-
-
-Click on the eye button to see the actual key and the \<\> to see the
-app key in a format that we will need to copy into the Arduino
-TTN\_Node\_Test program. Click on the button to the right of the Key, it
-will copy the Respective key into the clipboard so that we can then
-paste it into the program.
+Click on the eye button (highlighted) to see the actual key and the \<\> (highlighted) to see the keys in a format that we will need to copy into the Arduino TTN\_Node\_Test program. Click on the button to the right of the Key (highlighted), it will copy the Respective key into the clipboard so that we can then paste it into the program.
 
 Open the TTN\_GPS\_Tracker.ino program in the Arduino IDE and find these
 lines in the configuration.h file, section '2) Program Options';
@@ -386,31 +372,37 @@ Paste the Network Session Key from the TTN console into the NWKSKEY
 definition and the App Session Key into to the APPSKEY definition within
 the configuration file.
 
-The console will also have generated a device address so copy Device
-address into the DEVADDR definition into the configuration file.
-
-The completed entries should look like this, note the 0x added in front
-of the number and the removed spaces;
-
-(for security reasons the actual key shown is not valid)
-
-Be careful when copying not to create double sets of curly braces in the
-configuration file such as;
+Be careful when copying these two keys not to create double sets of curly braces in the configuration file such as;
 
 u1\_t NWKSKEY\[16\] =** { {** 0x27, 0x55, 0xF2,
 
-2\) Program Options
+The console will also have generated a device address so we need to copy the Device address into the DEVADDR definition into the configuration file. The format of this number will need changing to reflect the format the Arduino program expects. Make the changes so that the spaces are removed and there is a '0x' in front of the number. For instance of the number on the 'DEVICE OVERVIEW screen looks like this
 
-##Loading the TTN\_GPS\_Tracker program
+ 11 22 33 AA 
+
+you need to change is so that the relevant line in the configuration.h file look like this;
+
+DEVADDR = 0x112233AA;  
+
+You have completed your node configuration. You can now load the trackewr program and test it.
+
+
+## Loading the TTN\_GPS\_Tracker program
 
 
 With the NWKSKEY, APPSKEY and DEVADDR entered into the configuration.h
-file load the program onto your board.
+file load the TTN_GPS_Tracker program onto your board. There are some options that can be selected to use a GPS test location and add a display to the tracker, but these are turned off by default, see the section on 'Program Options' later on if you want to use these functions.
 
-To see if the data your node is sending is going through the Things
-Network, login to your TTN account and goto the console. Select
-applications and then (for this example) select the
-loratracker\_test\_application byt clicking on the coloured button;
+### Running the tracker program
+
+With the tracker program loaded and power applied to the tracker, observe the startup messages in the Arduino IDE serial monitor, you should see something like this;
+
+Note that the program has stopped waiting for the GPS to get a fix, and the LED is on. This wait is by design, we do not want the tracker sending erroneous GPS information if it is not working properly. With the GPS outside with a good view of the sky the GPS should get a fix, the LED will go off and the serial monitor should report something like this;
+
+If there is a gateway within reach of the tracker you should then see a completion message on the serial monitor. 
+
+To see if the location data from your programmed tracker is getting into  the Things Network, login to your TTN account and goto the console. Select
+applications and then (for this example) select the loratracker\_test\_application by clicking on the coloured button;
 
 You should see this screen;
 
@@ -420,7 +412,7 @@ Application data packets arriving;
 The payload is displayed in hexadecimal. 0X4C is ASCII 'L' and 0x6F is
 ASCII 'o' etc.
 
-Note - Frame Counter
+### Frame Counter
 
 Each packet\\payload that the node sends has a frame counter and the TTN
 network keeps track of them. If for example your node had sent 20
@@ -442,8 +434,7 @@ You can untick this box, and when the node resets the frame counter will
 start from zero and the packets\\payloads will not now be rejected. This
 is OK when testing a node, but do not leave it permanently set.
 
-You have completed your node configuration. You can now carry out a test
-of the TTN\_GPS\_Tracker node.
+
 
 
 ##Create a Cayenne Account
