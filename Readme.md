@@ -158,7 +158,7 @@ Program your board with the LoRa\_Module\_Test\_868Mhz.ino program and
 when it runs the Arduino serial monitor output should show the
 following;
 
-    LoRa\_Module\_Test\_868Mhz
+    LoRa_Module_Test_868Mhz
     V1.1
     10/10/2018
     Stuart Robinson
@@ -209,49 +209,47 @@ recommend you watch it;
 ### Creating a Things Network Account (if you do not already have one)
 
 
-Goto the Things Network website;
-
- <https://www.thethingsnetwork.org/>
+Goto the Things Network website;  <https://www.thethingsnetwork.org/>
 
 And select the 'Sign Up' button at the top of the screen;
 
 <br><br>
-<img src="/Pictures/2.jpg" width="450"/>
+<img src="/Pictures/2.jpg" width="650"/>
 <br><br>
 
 Provide the details for your new account, you will need an email
 address;
 
-<img src="/Pictures/3A.jpg" width="450"/>
+<img src="/Pictures/3A.jpg" width="650"/>
 
 <br><br>
 You will get an email with a link to confirm your account.
 
 ### Log into your Things Network Account
 
-Goto the Things Network Website
-
-<https://www.thethingsnetwork.org/>
+Goto the Things Network Website <https://www.thethingsnetwork.org/>
 
 And select the login button, top and far right;
 <br><br>
-<img src="/Pictures/4.jpg" width="450"/>
+<img src="/Pictures/4.jpg" width="650"/>
 <br><br>
 Once you have logged in drop down the menu against your name and select
 Console;
 
-<img src="/Pictures/4A.jpg" width="450"/>
 <br><br>
+<img src="/Pictures/4A.jpg" width="650"/>
+<br><br>
+
 ### Configuring applications in the TTN console
 
 Select applications;
 <br><br>
-<img src="/Pictures/4B.jpg" width="450"/>
+<img src="/Pictures/4B.jpg" width="650"/>
 <br><br>
 If you have created an application before you will see a list of them,
 otherwise you just see a screen like below. 
 <br><br>
-<img src="/Pictures/4C.jpg" width="450"/>
+<img src="/Pictures/4C.jpg" width="650"/>
 <br><br>
 
 Select 'Add Application'. 
@@ -262,17 +260,17 @@ consecutive -- or \_ characters and it cannot start or end with a - or a
 
 We call our application; 'TTN\_GPS\_Tracker'
 <br><br>
-<img src="/Pictures/5.jpg" width="450"/>
+<img src="/Pictures/5.jpg" width="650"/>
 <br><br>
 
-Ensure that the ttn-handler-eu is selected in the 'Handler registration'
+Ensure that the **ttn-handler-eu** is selected in the 'Handler registration'
 box.
 
 When you have completed the form, click on 'Add application', at the bottom of the screen and you
 will see the application overview.
 
 <br><br>
-<img src="/Pictures/8.jpg" width="450"/>
+<img src="/Pictures/8.jpg" width="650"/>
 <br><br>
 
 ### Configuring Devices in the TTN console
