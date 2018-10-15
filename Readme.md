@@ -11,6 +11,8 @@ configuration required for TTN is described and finally sending the
 trackers location from TTN into an online application, Cayenne in this
 case, is described.
 
+Through the instructions key items to select on screens are shown highlighted in red. For some screens the values of keys may be obscured by grey boxes for security reasons. 
+
 The tracker node is a simple Arduino device with a GPS attached. An
 Arduino Pro Mini 3.3V is all that is required. The tracker software
 parses the location information from the GPS and sends the location as
@@ -140,19 +142,16 @@ device
 
 You also need to connect these pins;
 
-Arduino LoRa Device
+    |   Arduino   | LoRa Device |
+    | ----------- | ----------- | 
+    |     VCC     |    3.3V     |  
+    |     GND     |    GND      |
+    |   SCK (13)  |    SCK      | 
+    |  MISO (12)  |    MISO     |
+    |  MOSI (11)  |    MOSI     |
 
-VCC 3.3V
 
-GND GND
-
-SCK (13) SCK
-
-MISO (12) MISO
-
-MOSI (11) MOSI
-
-Pro Mini pin numbers shown in brackets. Connections to thew LoRa devices
+Pro Mini pin numbers shown in brackets. Connections to the LoRa devices
 DIO0, DIO1 and DIO2 pins are not required for this test.
 
 Program your board with the LoRa\_Module\_Test\_868Mhz.ino program and
@@ -197,7 +196,6 @@ transmits an FM tone. You could use an SDR to listen for the tone.
 
 ## Setting up the TTN Console 
 
-
 With GPS and LoRa device working on our board we can move on to setting
 up the TTN console to accept the packets the TTN\_GPS\_Tracker will be
 transmitting.
@@ -208,8 +206,8 @@ recommend you watch it;
 
 <https://www.youtube.com/watch?v=duwUwXt-hs8>
 
-### Create a Things Network Account (if you do not already have one)
--
+### Creating a Things Network Account (if you do not already have one)
+
 
 Goto the Things Network website;
 
@@ -253,7 +251,7 @@ Select applications;
 If you have created an application before you will see a list of them,
 otherwise you just see a screen like below. 
 <br><br>
-![Picture 4C](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/4C.jpg)
+<img src="/Pictures/4C.jpg" width="450"/>
 <br><br>
 
 Select 'Add Application'. 
@@ -263,9 +261,9 @@ consecutive -- or \_ characters and it cannot start or end with a - or a
 \_ .
 
 We call our application; 'TTN\_GPS\_Tracker'
-
-![Picture 5](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/5.jpg)
-
+<br><br>
+<img src="/Pictures/5.jpg" width="450"/>
+<br><br>
 
 Ensure that the ttn-handler-eu is selected in the 'Handler registration'
 box.
@@ -273,7 +271,9 @@ box.
 When you have completed the form, click on 'Add application', at the bottom of the screen and you
 will see the application overview.
 
-![Picture 8](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/8.jpg)
+<br><br>
+<img src="/Pictures/8.jpg" width="450"/>
+<br><br>
 
 ### Configuring Devices in the TTN console
 
@@ -281,59 +281,89 @@ Since this is a new application there are no devices yet configured for the appl
 one, click on devices at the top of the screen;
 
 
-![Picture 9](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/9.jpg)
+<br><br>
+<img src="/Pictures/9.jpg" width="450"/>
+<br><br>
 
 
 
 Then click on 'register device'. 
 
-![Picture 10](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/10.jpg)
+<br><br>
+<img src="/Pictures/10.jpg" width="450"/>
+<br><br>
 
 You will see the register device screen;
-
-![Picture 12](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/12.jpg)
+<br><br>
+<img src="/Pictures/12.jpg" width="450"/>
+<br><br>
 
 
 Provide a name for the Device, such as
 'ttn\_gps\_tracker\_1' and enter it in the Device ID box. 
 
-![Picture 13](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/13.jpg)
+You will see the register device screen;
+<br><br>
+<img src="/Pictures/13.jpg" width="450"/>
+<br><br>
 
 
+Enter a Device EUI such as 00 11 22 33 44 55 66 77. 
 
-Enter a Device EUI such as 00 11 22 33 44 55 66 77. This device EUI needs to be unique and we will need it later. You can enter any number you like, its in hexadecimal, but if the number already exists you will get a warning.  
+<br><br>
+<img src="/Pictures/14.jpg" width="450"/>
+<br><br>
 
-![Picture 14](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/14.jpg)
+
+This device EUI needs to be unique and we will need it later. You can enter any number you like, its in hexadecimal, so 00 11 AA BB CC DD EE FF would also be acceptable, but if the number already exists you will get a warning.  
+
+<br><br>
+<img src="/Pictures/14A.jpg" width="450"/>
+<br><br>
 
 Then
 click on 'Register' bottom right of the screen;
 
-![Picture 15](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/15.jpg)
+<br><br>
+<img src="/Pictures/15.jpg" width="450"/>
+<br><br>
 
-We should then see the device overview screen;
+We should then see the **DEVICE OVERVIEW** overview screen;
 
-![Picture 16](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/16.jpg)
-
+<br><br>
+<img src="/Pictures/16.jpg" width="450"/>
+<br><br>
 
 Click on settings from the selection at the top of the device overview
 screen;
 
-![Picture 17](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/17.jpg)
-
+<br><br>
+<img src="/Pictures/17.jpg" width="450"/>
+<br><br>
 
 When the settings screen appears find the Activation Method box and
 ensure ABP is selected and highlighted. 
 
+<br><br>
+<img src="/Pictures/18.jpg" width="450"/>
+<br><br>
 
-![Picture 18](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/18.jpg)
-
-
-Then click 'Save' at the bottom
-of the screen.
+Then click 'Save' at the very bottom of the screen.
 
 We are using ABP activation so we need to copy the 'Network Session Key'
-and 'App Session Key' into our Arduino program. Then Key box initially
-looks like this;
+and 'App Session Key' into our Arduino program. Note that the **DEVICE OVERVIEW** screen has now changed;
+
+<br><br>
+<img src="/Pictures/16.jpg" width="450"/>
+<br><br>
+
+Note that the 
+
+
+
+
+
+
 
 Click on the eye button to see the actual key and the \<\> to see the
 app key in a format that we will need to copy into the Arduino
