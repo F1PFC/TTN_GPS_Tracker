@@ -377,7 +377,8 @@ the configuration file.
 
 Be careful when copying these two keys not to create double sets of curly braces in the configuration file such as;
 
-u1\_t NWKSKEY\[16\] =** { {** 0x27, 0x55, 0xF2,
+u1\_t NWKSKEY\[16\] = **{{**  0x27, 0x55, 0xF2,
+                         
 
 The console will also have generated a device address so we need to copy the Device address into the DEVADDR definition into the configuration file. The format of this number will need changing to reflect the format the Arduino program expects. Make the changes so that the spaces are removed and there is a '0x' in front of the number. For instance of the number on the 'DEVICE OVERVIEW screen looks like this
 
@@ -393,7 +394,7 @@ This **DEVICE OVERVIEW** screen also has the Device EUI displayed on it, we will
 
 The Arduino IDE will see the //characters as a comment and ignore the rest of the line.  
 
-You have completed your node configuration. You can now load the trackewr program and test it.
+You have completed your node configuration. You can now load the tracker program and test it.
 
 
 ## Loading the TTN\_GPS\_Tracker program
@@ -426,9 +427,6 @@ Note that the program has stopped waiting for the GPS to get a fix, and the LED 
     Packet queued
     401515: EV_TXCOMPLETE
 
-
-
-**If there is a gateway within reach of the tracker you should then see a completion message on the serial monitor ?** 
 
 To see if the location data from your tracker is getting into  the Things Network, login to your TTN account and goto the console. Select
 applications and then (for this example) select the TTN\_GPS_Tracker\_application, you should see this screen;
