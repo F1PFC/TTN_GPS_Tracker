@@ -1,4 +1,4 @@
-#TTN\_GPS\_Tracker\_Setup\_Instructions
+# TTN\_GPS\_Tracker\_Setup\_Instructions
 
 
 These instructions describe the building of a GPS tracker that uses The
@@ -27,7 +27,7 @@ environment and has been tested and runs on the Atmega328P. Note that
 the GPS and LoRa device are 3.3V logic devices, this is the reason a
 3.3V Arduino Pro mini is the recommended device.
 
-##Building the TTN\_GPS\_Tracker
+## Building the TTN\_GPS\_Tracker
 
 
 Before loading and running the specific TTN\_GPS\_Tracker code on our
@@ -37,7 +37,7 @@ yourself that these components are working before trying to run the
 TTN\_GPS\_Tracker code, if you then have problems you will have
 difficulty working out what the problems are.
 
-###Testing the GPS
+### Testing the GPS
 
 
 A very common problem reported with GPS trackers is that 'the GPS does
@@ -121,7 +121,7 @@ Note that a lot of the Ublox GPSs default to the $GNGGA and $GNRMC
 NMEA sentence format, other GPSs may use $GPGGA and $GPRMC formats.
 The GPS library used in the TTN\_GPS\_Tracker code recognises both types.
 
-###Testing the LoRa device
+### Testing the LoRa device
 
 
 It is also important to test that the LoRa device is connected correctly
@@ -195,7 +195,7 @@ following;
 Note that at reset the default LoRa device frequency is 434.000Mhz. The program changes the frequency to 868.000Mhz (shown as New Frequency) and
 transmits an FM tone. You could use an SDR to listen for the tone.
 
-##Setting up the TTN Console 
+## Setting up the TTN Console 
 
 
 With GPS and LoRa device working on our board we can move on to setting
@@ -208,7 +208,7 @@ recommend you watch it;
 
 <https://www.youtube.com/watch?v=duwUwXt-hs8>
 
-###Create a Things Network Account (if you do not already have one)
+### Create a Things Network Account (if you do not already have one)
 -
 
 Goto the Things Network website;
@@ -229,7 +229,7 @@ address;
 <br><br>
 You will get an email with a link to confirm your account.
 
-###Log into your Things Network Account
+### Log into your Things Network Account
 
 Goto the Things Network Website
 
@@ -244,7 +244,7 @@ Console;
 
 <img src="/Pictures/4A.jpg" width="450"/>
 <br><br>
-###Configuring applications in the TTN console
+### Configuring applications in the TTN console
 
 Select applications;
 <br><br>
@@ -275,7 +275,7 @@ will see the application overview.
 
 ![Picture 8](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/8.jpg)
 
-###Configuring Devices in the TTN console
+### Configuring Devices in the TTN console
 
 Since this is a new application there are no devices yet configured for the application, so we need to add
 one, click on devices at the top of the screen;
