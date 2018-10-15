@@ -44,7 +44,7 @@ yourself that these components are working before trying to run the
 TTN\_GPS\_Tracker code, if you then have problems you will have
 difficulty working out what the problems are.
 
-### Testing the GPS
+## Testing the GPS
 
 
 A very common problem reported with GPS trackers is that 'the GPS does
@@ -128,7 +128,7 @@ Note that a lot of the Ublox GPSs default to the $GNGGA and $GNRMC
 NMEA sentence format, other GPSs may use $GPGGA and $GPRMC formats.
 The GPS library used in the TTN\_GPS\_Tracker code recognises both types.
 
-### Testing the LoRa device
+## Testing the LoRa device
 
 
 It is also important to test that the LoRa device is connected correctly
@@ -211,7 +211,7 @@ recommend you watch it;
 
 <https://www.youtube.com/watch?v=duwUwXt-hs8>
 
-### Creating a Things Network Account (if you do not already have one)
+## Creating a Things Network Account (if you do not already have one)
 
 
 Goto the Things Network website;  <https://www.thethingsnetwork.org/>
@@ -230,7 +230,7 @@ address;
 <br><br>
 You will get an email with a link to confirm your account.
 
-### Log into your Things Network Account
+## Log into your Things Network Account
 
 Goto the Things Network Website <https://www.thethingsnetwork.org/>
 
@@ -245,7 +245,7 @@ Console;
 <img src="/Pictures/4A.jpg" width="650"/>
 <br><br>
 
-### Configuring applications in the TTN console
+## Configuring applications in the TTN console
 
 Select applications;
 <br><br>
@@ -278,7 +278,7 @@ will see the application overview.
 <img src="/Pictures/8.jpg" width="650"/>
 <br><br>
 
-### Configuring Devices in the TTN console
+## Configuring Devices in the TTN console
 
 Since this is a new application there are no devices yet configured for the application, so we need to add
 one, click on devices at the top of the screen;
@@ -402,7 +402,7 @@ You have completed your node configuration. You can now load the trackewr progra
 With the NWKSKEY, APPSKEY and DEVADDR entered into the configuration.h
 file load the TTN_GPS_Tracker program onto your board. There are some options that can be selected to use a GPS test location and add a display to the tracker, but these are turned off by default, see the section on 'Program Options' later on if you want to use these functions.
 
-### Running the tracker program
+## Running the tracker program
 
 With the tracker program loaded and power applied to the tracker, observe the startup messages in the Arduino IDE serial monitor, you should see something like this;
 
@@ -448,7 +448,7 @@ Application data packets arriving, click on a line to expand and show the data f
 
 
 
-##Create a Cayenne Account
+## Create a Cayenne Account
 
 
 Goto http://www.mydevices.com\ and select 'Sign up for Free'
@@ -508,7 +508,7 @@ Note the URL of this screen contains a number, highlighted in red, the number fr
 Your number will obviously be different. You need to copy this and save it, we need to enter it into the TTN console. 
 
 
-##Enable TTN Cayenne Integration
+## Enable TTN Cayenne Integration
 
 Log back into your TTN console and go to Application overview and select 'Integrations' 
 
