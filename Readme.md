@@ -1,4 +1,5 @@
-TTN\_GPS\_Tracker\_Setup\_Instructions
+#TTN\_GPS\_Tracker\_Setup\_Instructions
+
 
 These instructions describe the building of a GPS tracker that uses The
 Things Network (TTN) to receive the trackers location. Once the location
@@ -26,8 +27,8 @@ environment and has been tested and runs on the Atmega328P. Note that
 the GPS and LoRa device are 3.3V logic devices, this is the reason a
 3.3V Arduino Pro mini is the recommended device.
 
-Building the TTN\_GPS\_Tracker
-==============================
+##Building the TTN\_GPS\_Tracker
+
 
 Before loading and running the specific TTN\_GPS\_Tracker code on our
 node it is essential to test out the seperate component parts of the
@@ -36,8 +37,8 @@ yourself that these components are working before trying to run the
 TTN\_GPS\_Tracker code, if you then have problems you will have
 difficulty working out what the problems are.
 
-Testing the GPS
----------------
+###Testing the GPS
+
 
 A very common problem reported with GPS trackers is that 'the GPS does
 not work'. The TTN\_GPS\_Tracker code will not work without a
@@ -45,9 +46,14 @@ functioning GPS so it is essential to test it first.
 
 Load the EchoGPS\_Softwareserial\_Test.ino program into the Arduino IDE,
 makes sure the Arduino IDE is set to use the Arduino Pro Mini at 3.3V
-8Mhz, see below;
+8Mhz, see below;  
+
 
 ![Picture 1](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/1.jpg)
+
+
+![Picture 1](/Pictures/1.jpg)
+
 
 
 The EchoGPS\_Softwareserial\_Test uses the softwareserial library
@@ -74,9 +80,8 @@ Load the program and when it runs the LED should flash briefly at
 startup and then the serial monitor should show GPS output similar to
 this;
 
-
-
-        EchoGPS\_Softwareserial\_Test\_10/10/2018
+        EchoGPS_Softwareserial_Test
+		10/10/2018
         Stuart Robinson
         $GNVTG,,,,,,,,,N\*2E
         $GNRMC,102208.00,V,,,,,,,121018,,,N\*61
@@ -121,8 +126,8 @@ Note that a lot of the Ublox GPSs default to the \$GNGGA and \$GNRMC
 NMEA sentence format, other GPSs may use \$GPGGA and \$GPRMC formats.
 The GPS library used in the TTN\_GPS\_Tracker code recognises both types.
 
-Testing the LoRa device
------------------------
+###Testing the LoRa device
+
 
 It is also important to test that the LoRa device is connected correctly
 working before running the TTN\_GPS\_Tracker code.
@@ -159,72 +164,44 @@ Program your board with the LoRa\_Module\_Test\_868Mhz.ino program and
 when it runs the Arduino serial monitor output should show the
 following;
 
-LoRa\_Module\_Test\_868Mhz
+    LoRa\_Module\_Test\_868Mhz
+    V1.1
+    10/10/2018
+    Stuart Robinson
+    LED Flash
+    Checking LoRa Device
+   
+    Registers after reset - LoRa Registers
+    Reg 0 1 2 3 4 5 6 7 8 9 A B C D E F
+    0x00 00 0F 1A 0B 00 52 6C 80 00 4F 09 2B 20 08 02 0A
+    0x10 FF 6F 15 0B 28 0C 12 47 32 3E 00 00 00 00 00 40
+    0x20 00 00 00 00 05 00 03 93 55 55 55 55 55 55 55 55
+    0x30 90 40 40 00 00 0F 00 00 00 F5 20 82 FD 02 80 40
+    0x40 00 00 12 24 2D 00 03 00 04 23 00 09 05 84 32 2B
+    0x50 14 00 00 11 00 00 00 0F E0 00 0C FD 07 00 5C 78
+    0x60 00 19 0C 4B CC 0E 7F 20 04 47 AF 3F B2 00 37 0B
+    0x70 D0 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00
+    Frequency after reset - 434.000Mhz
+    Device Present
+    
+    Registers after setup - LoRa Registers
+    Reg 0 1 2 3 4 5 6 7 8 9 A B C D E F
+    0x00 00 0F 1A 0B 00 52 6C 80 00 4F 09 2B 23 08 02 0A
+    0x10 FF 00 15 0B 28 0C 12 47 32 3E 00 00 00 00 00 FF
+    0x20 00 0C 00 00 05 00 03 93 55 55 55 55 55 55 55 55
+    0x30 90 40 40 00 00 0F 00 00 00 F5 20 82 FD 02 00 40
+    0x40 00 00 12 24 2D 00 03 00 04 23 00 09 05 84 32 2B
+    0x50 14 00 00 11 00 00 00 0F E0 00 0C 00 07 00 5C 78
+    0x60 00 19 0C 4B CC 0E 41 20 04 47 AF 3F B4 00 38 0B
+    0x70 D0 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00
+    New Frequency - 868.000Mhz
+    Transmit FM Tone - Done
 
-V1.1
+Note that at reset the default LoRa device frequency is 434.000Mhz. The program changes the frequency to 868.000Mhz (shown as New Frequency) and
+transmits an FM tone. You could use an SDR to listen for the tone.
 
-10/10/2018
+##Setting up the TTN Console 
 
-Stuart Robinson
-
-LED Flash
-
-Checking LoRa Device
-
-Registers after reset - LoRa Registers
-
-Reg 0 1 2 3 4 5 6 7 8 9 A B C D E F
-
-0x00 00 0F 1A 0B 00 52 6C 80 00 4F 09 2B 20 08 02 0A
-
-0x10 FF 6F 15 0B 28 0C 12 47 32 3E 00 00 00 00 00 40
-
-0x20 00 00 00 00 05 00 03 93 55 55 55 55 55 55 55 55
-
-0x30 90 40 40 00 00 0F 00 00 00 F5 20 82 FD 02 80 40
-
-0x40 00 00 12 24 2D 00 03 00 04 23 00 09 05 84 32 2B
-
-0x50 14 00 00 11 00 00 00 0F E0 00 0C FD 07 00 5C 78
-
-0x60 00 19 0C 4B CC 0E 7F 20 04 47 AF 3F B2 00 37 0B
-
-0x70 D0 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00
-
-Frequency after reset - 434.000Mhz
-
-Device Present
-
-Registers after setup - LoRa Registers
-
-Reg 0 1 2 3 4 5 6 7 8 9 A B C D E F
-
-0x00 00 0F 1A 0B 00 52 6C 80 00 4F 09 2B 23 08 02 0A
-
-0x10 FF 00 15 0B 28 0C 12 47 32 3E 00 00 00 00 00 FF
-
-0x20 00 0C 00 00 05 00 03 93 55 55 55 55 55 55 55 55
-
-0x30 90 40 40 00 00 0F 00 00 00 F5 20 82 FD 02 00 40
-
-0x40 00 00 12 24 2D 00 03 00 04 23 00 09 05 84 32 2B
-
-0x50 14 00 00 11 00 00 00 0F E0 00 0C 00 07 00 5C 78
-
-0x60 00 19 0C 4B CC 0E 41 20 04 47 AF 3F B4 00 38 0B
-
-0x70 D0 01 10 00 00 00 00 00 00 00 00 00 00 00 00 00
-
-New Frequency - 868.000Mhz
-
-Transmit FM Tone - Done
-
-Note that at reset the LoRa device frequency is 434.000Mhz and the
-program changes the frequency to 868.000Mhz (New Frequency) and
-transmits an FM tone. Youy could use an SDR to listen for the tone.
-
-Setting up the TTN Console 
-===========================
 
 With GPS and LoRa device working on our board we can move on to setting
 up the TTN console to accept the packets the TTN\_GPS\_Tracker will be
@@ -236,8 +213,8 @@ recommend you watch it;
 
 <https://www.youtube.com/watch?v=duwUwXt-hs8>
 
-Create a Things Network Account (if you do not already have one)
-----------------------------------------------------------------
+###Create a Things Network Account (if you do not already have one)
+-
 
 Goto the Things Network website;
 
@@ -258,8 +235,7 @@ src="https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/3.jpg" w
 
 You will get an email with a link to confirm your account.
 
-Log into your Things Network Account
-------------------------------------
+###Log into your Things Network Account
 
 Goto the Things Network Website
 
@@ -275,8 +251,7 @@ Console;
 
 ![Picture 4A](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/4A.jpg)
 
-Configuring applications in the TTN console
--------------------------------------------
+###Configuring applications in the TTN console
 
 Select applications;
 
@@ -308,9 +283,9 @@ will see the application overview.
 
 ![Picture 8](https://raw.github.com/LoRaTracker/TTN_GPS_Tracker/master/Pictures/8.jpg)
 
+###Configuring Devices in the TTN console
 
-
-Sinced this is a new application there are no devices yet configured for the application, so we need to add
+Since this is a new application there are no devices yet configured for the application, so we need to add
 one, click on devices at the top of the screen;
 
 
@@ -404,8 +379,8 @@ u1\_t NWKSKEY\[16\] =** { {** 0x27, 0x55, 0xF2,
 
 2\) Program Options
 
-Loading the TTN\_GPS\_Tracker program
--------------------------------------
+##Loading the TTN\_GPS\_Tracker program
+
 
 With the NWKSKEY, APPSKEY and DEVADDR entered into the configuration.h
 file load the program onto your board.
@@ -448,13 +423,14 @@ is OK when testing a node, but do not leave it permanently set.
 You have completed your node configuration. You can now carry out a test
 of the TTN\_GPS\_Tracker node.
 
-Create a Cayenne Account
-------------------------
+
+##Create a Cayenne Account
+
 
 Goto http://www.mydevices.com\
 
-TTN\_GPS\_Tracker program -- Display option
--------------------------------------------
+##TTN\_GPS\_Tracker program -- Display option
+
 
 Note that the TTN\_GPS\_Tracker program has the option to display
 information on a local display, either a 20x4 LCD display or a SSD1306
