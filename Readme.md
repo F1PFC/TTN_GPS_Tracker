@@ -29,6 +29,11 @@ environment and has been tested and runs on the Atmega328P. Note that
 the GPS and LoRa device are 3.3V logic devices, this is the reason a
 3.3V Arduino Pro mini is the recommended device.
 
+This TTN\_GPS\_Tracker uses an 868Mhz LoRa device and any of the LoRaTracker boards that can take a Hope RFM98 device can be used, including the high altitude balloon tracker. You can find details of the LoRaTracker boards on the 'BUY' page here;
+
+<https://www.thethingsnetwork.org/>
+
+
 ## Building the TTN\_GPS\_Tracker
 
 
