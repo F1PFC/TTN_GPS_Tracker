@@ -330,7 +330,7 @@ Note that the Device EUI needs to be unique and we will need it later. You can e
 <img src="/Pictures/14A.jpg" width="650"/>
 <br><br>
 
-We should now have **DEVICE OVERVIEW**;
+If the Device EUI is unique it will be accepted and we should now have the **DEVICE OVERVIEW** screen;
 
 <br><br>
 <img src="/Pictures/16.jpg" width="650"/>
