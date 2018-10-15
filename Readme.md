@@ -588,6 +588,8 @@ You can untick this box, and when the node resets the frame counter will
 start from zero and the packets or payloads will not now be rejected. This
 is OK when testing a node, but do not leave it permanently set.
 
+<br><br>
+<br><br>
 
 ## Stuart Robinson
 
