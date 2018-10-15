@@ -321,7 +321,7 @@ Then click on 'Register' bottom right of the screen;
 <br><br>
 
 
-Note that the device EUI needs to be unique and we will need it later. You can enter any number you like, its in hexadecimal, so 00 11 AA BB CC DD EE FF would also be acceptable, but if the number already exists you will get a warning.  
+Note that the Device EUI needs to be unique and we will need it later. You can enter any number you like, its in hexadecimal, so 00 11 AA BB CC DD EE FF would also be acceptable, but if the number already exists you will get a warning.  
 
 <br><br>
 <img src="/Pictures/14A.jpg" width="450"/>
@@ -384,6 +384,12 @@ you need to change is so that the relevant line in the configuration.h file look
 
 DEVADDR = 0x112233AA;  
 
+This **DEVICE OVERVIEW** screen also has the Device EUI displayed on it, we will need it later. Select to copy it into the clipboard as for the previous keys and paste it into a text editor or similar and save it for later. You could even add it the the configuration file like this;
+
+//00 11 22 33 44 55 66 77
+
+The Arduino IDE will see the //characters as a comment and ignore the rest of the line.  
+
 You have completed your node configuration. You can now load the trackewr program and test it.
 
 
@@ -397,58 +403,158 @@ file load the TTN_GPS_Tracker program onto your board. There are some options th
 
 With the tracker program loaded and power applied to the tracker, observe the startup messages in the Arduino IDE serial monitor, you should see something like this;
 
+
+    TTN_GPS_TRACKER
+    101018
+    Stuart Robinson
+    
+    Waiting for Startup GPS Fix
+
+
 Note that the program has stopped waiting for the GPS to get a fix, and the LED is on. This wait is by design, we do not want the tracker sending erroneous GPS information if it is not working properly. With the GPS outside with a good view of the sky the GPS should get a fix, the LED will go off and the serial monitor should report something like this;
 
-If there is a gateway within reach of the tracker you should then see a completion message on the serial monitor. 
 
-To see if the location data from your programmed tracker is getting into  the Things Network, login to your TTN account and goto the console. Select
-applications and then (for this example) select the loratracker\_test\_application by clicking on the coloured button;
+    TTN_GPS_TRACKER
+    101018
+    Stuart Robinson
+    
+    Waiting for Startup GPS Fix
+    Waiting for GPS Fix - Have GPS Fix
+    Packet queued
+    401515: EV_TXCOMPLETE
 
-You should see this screen;
+
+
+**If there is a gateway within reach of the tracker you should then see a completion message on the serial monitor ?** 
+
+To see if the location data from your tracker is getting into  the Things Network, login to your TTN account and goto the console. Select
+applications and then (for this example) select the TTN\_GPS_Tracker\_application, you should see this screen;
+
+<br><br>
+<img src="/Pictures/25.jpg" width="450"/>
+<br><br>
+
 
 Click on 'Data' on the top right of the window and you should see the
-Application data packets arriving;
+Application data packets arriving, click on a line to expand and show the data for a packet;
 
-The payload is displayed in hexadecimal. 0X4C is ASCII 'L' and 0x6F is
-ASCII 'o' etc.
 
-### Frame Counter
-
-Each packet\\payload that the node sends has a frame counter and the TTN
-network keeps track of them. If for example your node had sent 20
-packets\\payloads (frame counters 0-19) and you restart your node then
-the TTN network will ignore the packets until the frame counter reaches
-20, then it will continue to display the payloads in the console again.
-
-This behaviour can give the impression that your node is not working.
-You can disable this beahviour for testing purposes, by going to the
-Application overview screen, selecting 'Devices' then select the device
-to configure and then from the 'Device Overview'
-
-And then select 'Settings' on the top right.
-
-At the bottom of the screen of device settings you will see this box,
-'frame counter settings'
-
-You can untick this box, and when the node resets the frame counter will
-start from zero and the packets\\payloads will not now be rejected. This
-is OK when testing a node, but do not leave it permanently set.
-
+<br><br>
+<img src="/Pictures/25A.jpg" width="450"/>
+<br><br>
 
 
 
 ##Create a Cayenne Account
 
 
-Goto http://www.mydevices.com\
+Goto http://www.mydevices.com\ and select 'Sign up for Free'
 
-##TTN\_GPS\_Tracker program -- Display option
+<br><br>
+<img src="/Pictures/26.jpg" width="450"/>
+<br><br>
 
 
-Note that the TTN\_GPS\_Tracker program has the option to display
-information on a local display, either a 20x4 LCD display or a SSD1306
-OLED, this option is turned off by default because of this line in the
-configuration file;
+provide the details to create your account;
+
+
+<br><br>
+<img src="/Pictures/27.jpg" width="450"/>
+<br><br>
+
+Select 'All Devices'
+
+<br><br>
+<img src="/Pictures/29.jpg" width="450"/>
+<br><br>
+
+
+
+
+You should see the 'Devices and Widgets' screen, scroll down till you find the 'The Things Network'. and select it.
+
+<br><br>
+<img src="/Pictures/30.jpg" width="450"/>
+<br><br>
+
+
+On the next screen locate 'Cayenne LPP' and select it.
+
+<br><br>
+<img src="/Pictures/31.jpg" width="450"/>
+<br><br>
+
+
+In the next screen get the DevEUI we saved earlier and enter it in the DevEUI box, then select 'ADD Device'   
+
+
+<br><br>
+<img src="/Pictures/31A.jpg" width="450"/>
+<br><br>
+
+If you get a 'Conflict' Error then the DevEUI your using is not unique, you need to go back to the TTN console and select another. If all goes well you should see a blank dashboard;
+
+<br><br>
+<img src="/Pictures/31B.jpg" width="450"/>
+<br><br>
+
+Note the URL of this screen contains a number, highlighted in red, the number from the screen in this case is;
+
+9156d9e0-aaaa-11e8-9c33-7336b356aaaa 
+
+Your number will obviously be different. You need to copy this and save it, we need to enter it into the TTN console. 
+
+
+##Enable TTN Cayenne Integration
+
+Log back into your TTN console and go to Application overview and select 'Integrations' 
+
+<br><br>
+<img src="/Pictures/33.jpg" width="450"/>
+<br><br>
+
+Select 'Add Integration'
+
+<br><br>
+<img src="/Pictures/34.jpg" width="450"/>
+<br><br>
+
+Select 'Cayenne'
+
+<br><br>
+<img src="/Pictures/35.jpg" width="450"/>
+<br><br>
+
+For the 'Process ID' enter thr number copied from the Cayenne dashboard URL earlier, and click on 'default key' for the Access key. Then click on 'Add Integration'
+
+<br><br>
+<img src="/Pictures/36.jpg" width="450"/>
+<br><br>
+
+And you should see the Integration overview screen show a status of 'Running'
+
+<br><br>
+<img src="/Pictures/37.jpg" width="450"/>
+<br><br>
+
+Go back to the Cayenne dashboard and with in a few seconds of the packet being sent a map appears on the dashboard with the location of the tracker;
+
+<br><br>
+<img src="/Pictures/38.jpg" width="450"/>
+<br><br>
+
+To simulate the effect of a moving tracker I programmed the tracker to send a test series of location packets,  simulated a short
+
+
+<br><br>
+<img src="/Pictures/39.jpg" width="450"/>
+<br><br>
+
+
+## TTN\_GPS\_Tracker program -- Display option
+
+The TTN\_GPS\_Tracker program has the option to display
+information on a local display, via an I2C connection, either a 20x4 LCD display or a SSD1306 OLED , this option is turned off by default because of this line in the configuration file;
 
 //\#define Use\_Display
 
@@ -459,8 +565,32 @@ change the line into;
 \#define Use\_Display
 
 Do not enable the display option unless a display is actually attached
-and working.
+and working. The I2C displays are both 3.3V versions, the 20x4 LCD is connected to I2C via a PCF8574 I\O expander designed for driving the HD44780 controller on the LCD. 
 
-Stuart Robinson
 
-June 2018
+### Frame Counter
+
+Each packet\\payload that the node sends has a frame counter and the TTN
+network keeps track of them. If for example your node had sent 20
+packets\\payloads (frame counters 0-19) and you restart your node then
+the TTN network will ignore the packets until the frame counter reaches
+20, then it will continue to display the payloads in the console again.
+
+This behaviour can give the impression that your node is not working.
+You can disable this behviour for testing purposes, by going to the
+Application overview screen, selecting 'Devices' then select the device
+to configure and then from the 'Device Overview'
+
+And then select 'Settings' on the top right.
+
+At the bottom of the screen of device settings you will see this box,
+'frame counter settings'
+
+You can untick this box, and when the node resets the frame counter will
+start from zero and the packets or payloads will not now be rejected. This
+is OK when testing a node, but do not leave it permanently set.
+
+
+## Stuart Robinson
+
+## October 2018
