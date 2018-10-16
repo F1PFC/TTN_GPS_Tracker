@@ -3,42 +3,47 @@
 
 These instructions describe the building of a GPS tracker that uses The
 Things Network (TTN) to receive the trackers location. Once the location
-data is received by the TTN the trackers location can be viewed online
+data is received by the TTN the trackers location can be viewed on-line
 on a Internet enabled device or passed to on-line mapping applications.
+
+This project uses as its base the code used in this article; 
+
+[http://www.thethingsnetwork.org/labs/story/lorawan-gsp-tracker](http://www.thethingsnetwork.org/labs/story/lorawan-gsp-tracker)
+
+There are changes to the software so that the tracker does not work (transmit) unless it has a current GPS fix. There is also an option to add a display to the tracker so that you can see the current location and other status information. The detail of how to configure TTN to accept the tracker and link it to Cayenne for mapping is explained step by step. 
 
 The build and testing of the tracker itself is described first. Then the
 configuration required for TTN is described and finally sending the
-trackers location from TTN into an online application, Cayenne in this
-case, is described.
+trackers location from TTN into the on-line application Cayenne is described.
 
-Through the instructions key items to select on screens are shown highlighted in red. For some screens the values of keys may be obscured by grey boxes for security reasons. 
+Through the instructions key items to select on screens are shown highlighted in red. For some screens the values of keys have been obscured by grey boxes for security reasons. 
 
-The tracker node is a simple Arduino device with a GPS attached. An
-Arduino Pro Mini 3.3V is all that is required. The tracker software
-parses the location information from the GPS and sends the location as
-latitude and longitude using the LoRa device into the TTN network. There
+The tracker node is a standard Arduino device with a GPS attached. An
+Arduino Pro Mini 3.3V is recommended. You could use other Arduinos such as the 5V UNO but then you will need logic level conversion for all the LoRa and GPS pins. 
+
+The tracker software parses the location information from the GPS and sends it as latitude and longitude using the LoRa device into the TTN network. There
 must therefore be a TTN gateway within reach of the tracker node. When
-correctly setup you should see the GPS location messages arriving in the
+correctly set-up you should see the GPS location messages arriving in the
 TTN console. You will need a Things network account to view this
-console. You will also need to setup the TTN console to pass your
+console. You will also need to set-up the TTN console to pass your
 tracker node information across to Cayenne and set up the Cayenne
 desktop to receive and display the information.
 
 The TTN tracker node program code published here is for the Arduino
-environment and has been tested and runs on the Atmega328P. Note that
+environment and has been tested and runs on the Atmega328P. Remember that
 the GPS and LoRa device are 3.3V logic devices, this is the reason a
 3.3V Arduino Pro mini is the recommended device.
 
 This TTN\_GPS\_Tracker uses an 868Mhz LoRa device and any of the LoRaTracker boards that can take a Hope RFM98 device can be used, including the high altitude balloon tracker. You can find details of the LoRaTracker boards on the 'BUY' page here;
 
-<https://www.thethingsnetwork.org/>
+<http://www.loratracker.uk>
 
 
 ## Building the TTN\_GPS\_Tracker
 
 
 Before loading and running the specific TTN\_GPS\_Tracker code on our
-node it is essential to test out the seperate component parts of the
+node it is essential to test out the separate component parts of the
 tracker, specifically the GPS and the LoRa device. If you do not assure
 yourself that these components are working before trying to run the
 TTN\_GPS\_Tracker code, if you then have problems you will have
@@ -79,7 +84,7 @@ putting this pin low turns on the GPS;
 If your board does not have this capability define the pin as -1
 
 Load the program and when it runs the LED should flash briefly at
-startup and then the serial monitor should show GPS output similar to
+start-up and then the serial monitor should show GPS output similar to
 this;
 
         EchoGPS_Softwareserial_Test
@@ -114,7 +119,7 @@ this;
 Note that the two NMEA sentences that normally contain the location
 data, $GNGGA and $GNRMC are empty of the latitude and longitude data.
 This is normal for a GPS that has just been powered up or that is
-located indoors. The $GNGSV senetence tells you that there is one sentence of $GNGSV information and that one GPS satellite has been detected.
+located indoors. The $GNGSV sentence tells you that there is one sentence of $GNGSV information and that one GPS satellite has been detected.
 
 Whilst the above shows the GPS is working it has yet to get a location
 fix. It is very important to check that the GPS does get a fix and that the
@@ -197,7 +202,7 @@ following;
     Transmit FM Tone - Done
 
 Note that at reset the default LoRa device frequency is 434.000Mhz. The program changes the frequency to 868.000Mhz (shown as New Frequency) and
-transmits an FM tone. You could use an SDR to listen for the tone.
+transmits an FM tone. You could use a software defined radio (SDR) to listen for the tone.
 
 ## Setting up the TTN Console 
 
@@ -508,7 +513,7 @@ Your number will obviously be different. You need to copy this and save it, we n
 
 ## Enable TTN Cayenne Integration
 
-Log back into your TTN console and go to Application overview and select 'Integrations' 
+Log back into your TTN console and go to Application overview and then select 'Integrations' 
 
 <br><br>
 <img src="/Pictures/33.jpg" width="650"/>
@@ -526,7 +531,7 @@ Select 'Cayenne'
 <img src="/Pictures/35.jpg" width="650"/>
 <br><br>
 
-For the 'Process ID' enter thr number copied from the Cayenne dashboard URL earlier, and click on 'default key' for the Access key. Then click on 'Add Integration'
+For the 'Process ID' enter the number copied from the Cayenne dashboard URL earlier, and click on 'default key' for the Access key. Then click on 'Add Integration'
 
 <br><br>
 <img src="/Pictures/36.jpg" width="650"/>
@@ -588,8 +593,15 @@ You can un-tick this box, and when the node resets the frame counter will
 start from zero and the packets or payloads will not now be rejected. This
 is OK when testing a node, but do not leave it permanently set.
 
-<br><br>
-<br><br>
+### A warning note about batteries
+
+If your tracker is small you may be tempted to use a small battery, in particular you may be tempted to use a Lithium Polymer (lipo) battery. Be very very careful if you use a Lipo. These batteries in particular can be dangerous when abused and yes they really can explode. In a tracker its quite likely that at some point the tracker will be left on and the battery will go flat. If this happens to a Lipo then consider binning it, you cannot be sure if it's suffered internal damage. Some, but not all, Lipos have internal circuits that disconnect the battery if it's voltage goes too low but unfortunately this can be at 2.4V, a bit too low really. 
+
+For long life and continued safety a Lipo powered project should turn itself off when the battery goes below around 3.0V, but very few DIY projects have this capability built in. Of course for the obvious safety reasons most commercial applications that use Lipos, such a mobile phones, tablets, laptop PCs etc, do have this protection built in. 
+
+A safer alternative to Lipos is to use say three or four AAA or AA alkaline batteries, these are easy to get and low cost. You can also use NiMh rechargeable versions of the AAA or AA batteries. Another alternative is to use a single LiFePO4 battery, these will supply around 3.3V to a project so they can be connected directly to the VCC of a project and no regulator is needed. The LiFePO4 batteries do not have the same fire risks as Lipos.      
+
+  
 
 ## Stuart Robinson
 
