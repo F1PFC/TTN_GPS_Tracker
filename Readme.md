@@ -38,6 +38,8 @@ This TTN\_GPS\_Tracker uses an 868Mhz LoRa device and any of the LoRaTracker boa
 
 <http://www.loratracker.uk>
 
+---
+
 
 ## Building the TTN\_GPS\_Tracker
 
@@ -329,7 +331,7 @@ Then click on 'Register' bottom right of the screen;
 <br><br>
 
 
-Note that the Device EUI needs to be unique and we will need it later. You can enter any number you like, its in hexadecimal, so 00 11 AA BB CC DD EE FF would also be acceptable, but if the number already exists you will get a warning.  
+Note that the Device EUI needs to be unique and we will need to use it later. You can enter any number you like, its in hexadecimal, so 00 11 AA BB CC DD EE FF would also be acceptable. If the number is already in use you will get a warning;  
 
 <br><br>
 <img src="/Pictures/14A.jpg" width="650"/>
