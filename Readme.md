@@ -51,6 +51,23 @@ yourself that these components are working before trying to run the
 TTN\_GPS\_Tracker code, if you then have problems you will have
 difficulty working out what the problems are.
 
+## Arduino Libraries
+
+The tracker program itself and some of the test programs need some third party Arduino libraries installed, these are noted in the program listings and here;
+
+LMIC Library;   [https://github.com/matthijskooijman/arduino-lmic](https://github.com/matthijskooijman/arduino-lmic )
+
+TinyGPSPlus Library; [https://github.com/mikalhart/TinyGPSPlus](http://github.com/mikalhart/TinyGPSPlus) 
+
+NeoSWSerial Library; [https://github.com/SlashDevin/NeoSWSerial](https://github.com/SlashDevin/NeoSWSerial)
+
+And if you want to add a display to the tracker you will need one of these libraries;
+
+NewLiquidCrystal Library (version 1.3.4); [https://bitbucket.org/fmalpartida/new-liquidcrystal/downloads/](https://bitbucket.org/fmalpartida/new-liquidcrystal/downloads/)
+
+SSD1306 Ascii Library; [https://github.com/greiman/SSD1306Ascii](https://github.com/greiman/SSD1306Ascii)
+
+
 ## Testing the GPS
 
 

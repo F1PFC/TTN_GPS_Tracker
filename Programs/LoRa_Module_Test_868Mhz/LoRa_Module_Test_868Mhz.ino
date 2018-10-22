@@ -3,8 +3,7 @@
 #define dateproduced "10/10/2018"
 #define aurthorname "Stuart Robinson"
 #include <Arduino.h>
-//#include "Program_Definitions.h"                     //part of LoRaTracker library
-#define LoRa_Device_in_MB1                           //required if board is using Mikrobus sockets
+
 
 /*
 *****************************************************************************************************************************

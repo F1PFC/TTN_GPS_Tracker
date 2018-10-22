@@ -41,23 +41,7 @@ by removing the two // characters in front of the #defines
 
 #define GPSTX A3                           //pin number for TX output - Arduino into GPS
 #define GPSRX A2                           //pin number for RX input - To Arduino from GPS
-#define GPSPOWER 7                         //not used pin for non LoRaTracker boards so define as -1 or use 7 for Locator2 boards
 #define LED1 8                             //pin number for LED                          
-
-/*
-***********************************************************************************************************************************************
-Board Definitions
-
-As an alternative to explicitly defining the Arduino pins required, there are pre-defined board definition files for the LoRaTracker boards
-included in the LoRaTracker Library;
-
-HTTPS://github.com/LoRaTracker/LoRaTracker-Library
-
-Select (include) the board definition file you require by removing the // characters before the appropriate include line in the list below
-***********************************************************************************************************************************************
-*/
-
-//#include "LCD_Receiver_Board_Definitions.h"
 
 
 #define GPSBaud 9600                         //baud rate for GPS 
@@ -99,9 +83,7 @@ void setup()
   Serial.println();
   
   pinMode(LED1, OUTPUT);                     //setup pin for LED
-  pinMode(GPSPOWER, OUTPUT);                 //setup pin for GPS Power Control, in case its in use
-  digitalWrite(GPSPOWER,LOW);
-  
+    
   GPSserial.begin(GPSBaud);                  //start softserial for GPS at defined baud rate
   led_Flash(5,100);                          //series of fast LED flshes as test  
      
