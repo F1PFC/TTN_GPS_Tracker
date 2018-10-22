@@ -3,7 +3,7 @@
 #define dateproduced "10/10/2018"
 #define aurthorname "Stuart Robinson"
 #include <Arduino.h>
-#include "Program_Definitions.h"                     //part of LoRaTracker library
+//#include "Program_Definitions.h"                     //part of LoRaTracker library
 #define LoRa_Device_in_MB1                           //required if board is using Mikrobus sockets
 
 /*
@@ -58,7 +58,6 @@
 #define lora_TonePin 6               //Arduino pin number connected to DIO2 pin on LoRa device, used for FM audio tone generation, can be left not connected 
 #define lora_DIO0 2                  //Arduino pin number connected to DIO0 pin on LoRa device, can be left not connected
 #define LED1 8                       //Arduino pin number for LED, when high LED should be on.  
-
 
 #include <SPI.h>
 

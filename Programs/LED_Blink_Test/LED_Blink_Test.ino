@@ -26,43 +26,11 @@ free from errors.
 ********************************************************************************************************************************
 Program operation
 
-The program flashes a LED connected to the pin defined by LED1, the LED on pin 13 of most Arduinos is flashed as well.
+The program flashes a LED connected to the pin defined by LED1
 ********************************************************************************************************************************
 */
 
-/*
-********************************************************************************************************************************
-Connections
-
-You can explicitly define the required pin below by removing the two // characters in front of the #defines 
-********************************************************************************************************************************
-*/
-
-#define LED1 8                      //Arduino pin number for LED, when high LED should be on.
-
-/*
-***********************************************************************************************************************************************
-As an alternative to explicitly defining the Arduino pins required, there are pre-defined board definition files for the LoRaTracker boards
-included in the LoRaTracker Library;
-
-https://github.com/LoRaTracker/LoRaTracker-Library
-
-Select (include) the board definition file you require by removing the // characters before the appropriate include line in the list below
-***********************************************************************************************************************************************
-*/
-
-//#include "HAB2_Board_Definitions.h"
-//#include "Locator2_Board_Definitions.h"
-//#include "LCD_Receiver_Board_Definitions.h"
-//#include "Relay1_Board_Definitions.h"
-//#include "Receiver2_Board_Defintions.h"
-//#include "Sensor1_Board_Definitions.h"
-//#include "MicroRX_Board_Definitions.h"
-//#include "PIHTracker2_Board_Definitions.h"
-//#include "PIHTracker3_Board_Definitions.h"
-//#include "RFM98_Shield_January2016_Board_Definitions.h"
-//#include "MarkTwo_Board_Definitions.h"
-
+#define LED1 8                              //Arduino pin number for LED, when high LED should be on.
 
 #define Serial_Monitor_Baud 115200          //this is baud rate used for the Arduino IDE Serial Monitor
 
@@ -85,10 +53,8 @@ void led_Flash(unsigned int flashes, unsigned int delaymS)
   for (index = 1; index <= flashes; index++)
   {
     digitalWrite(LED1, HIGH);
-    digitalWrite(13, HIGH);
     delay(delaymS);
     digitalWrite(LED1, LOW);
-    digitalWrite(13, LOW);
     delay(delaymS);
   }
 }
@@ -104,5 +70,4 @@ void setup()
   Serial.println();
 
   pinMode(LED1, OUTPUT);                     //for PCB LED
-  pinMode(13, OUTPUT);                       //for Pro Mini LED, Pin13
  }

@@ -2,13 +2,12 @@
 #define dateproduced "10/10/2018"
 #define aurthorname "Stuart Robinson"
 #include <Arduino.h>
-#define GPS_in_MB2                                   //required if board is using Mikrobus sockets
 
 /*
 *****************************************************************************************************************************
 LoRaTracker Test Programs
 
-Copyright of the author Stuart Robinson - 28/11/2017
+Copyright of the author Stuart Robinson - 10/10/2018
 
 http://www.LoRaTracker.uk
 

@@ -28,6 +28,9 @@
 *******************************************************************************************************************************
 */
 
+//these definitions are needed for an independant LoRa_Test file to compile.
+const char ClearToSendCommand = 'c';
+const char ACK = 'A';                
 
 //Constant names for bandwidth settings
 const byte BW7800 = 0;          //7.8khz
