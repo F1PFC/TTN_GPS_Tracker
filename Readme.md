@@ -585,13 +585,10 @@ To simulate the effect of a moving balloon tracker I programmed the tracker, sti
 The TTN\_GPS\_Tracker program has the option to display
 information on a local display connected to the Arduino device via an I2C connection, either a 20x4 LCD display or a SSD1306 OLED. The option to enable the display is turned off by default by this line in the configuration.h file;
 
-//\#define Use\_Display
+//#define Use_Display
 
 The two // characters turn the text that follows into a comment which is
-ignored by the Arduino compiler. To enable the display option we would
-change the line into;
-
-\#define Use\_Display
+ignored by the Arduino compiler. To enable the display option you need to remove the two // characters in front of the define line. 
 
 Do not enable the display option unless the appropriate display is attached
 and working. The displays need to be 3.3V versions. The 20x4 LCD is connected via an I2C PCF8574 I\O expander board specifically designed for driving the HD44780 controller on the LCD. 
@@ -599,9 +596,9 @@ and working. The displays need to be 3.3V versions. The 20x4 LCD is connected vi
 
 ### Frame Counter
 
-Each packet\\payload that the node sends has a frame counter and the TTN
+Each packet or payload that the node sends has a frame counter and the TTN
 network keeps track of them. If for example your node had sent 20
-packets\\payloads (frame counters 0-19) and you restart your node then
+packets or payloads (frame counters 0-19) and you restart your node then
 the TTN network will ignore the packets until the frame counter reaches
 20, then it will continue to display the payloads in the console again.
 
@@ -618,7 +615,7 @@ is OK when testing a node, but do not leave it permanently set.
 
 ### A warning note about batteries
 
-If your tracker is small you may be tempted to use a small battery, in particular you may be tempted to use a Lithium Polymer (lipo) battery. Be very very careful if you use a Lipo. These batteries in particular can be dangerous when abused and yes they really can explode. In a tracker its quite likely that at some point the tracker will be left on and the battery will go flat. If this happens to a Lipo then consider binning it, you cannot be sure if it's suffered internal damage. Some, but not all, Lipos have internal circuits that disconnect the battery if it's voltage goes too low but unfortunately this can be at 2.4V, a bit too low really. 
+If your tracker is small you may be tempted to use a small battery, in particular you may be tempted to use a Lithium Polymer (Lipo) battery. Be very very careful if you use a Lipo. These batteries in particular can be dangerous when abused and yes they really can explode. In a tracker its quite likely that at some point the tracker will be left on and the battery will go flat. If this happens to a Lipo then consider binning it, you cannot be sure if it's suffered internal damage. Some, but not all, Lipos have internal circuits that disconnect the battery if it's voltage goes too low but unfortunately this can be at 2.4V, a bit too low really. 
 
 For long life and continued safety a Lipo powered project should turn itself off when the battery goes below around 3.0V, but very few DIY projects have this capability built in. Of course for the obvious safety reasons most commercial applications that use Lipos, such a mobile phones, tablets, laptop PCs etc, do have this protection built in. 
 
