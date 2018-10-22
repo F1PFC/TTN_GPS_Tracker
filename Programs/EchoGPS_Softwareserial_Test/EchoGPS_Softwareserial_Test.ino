@@ -39,8 +39,8 @@ by removing the two // characters in front of the #defines
 ********************************************************************************************************************************
 */
 
-#define GPSTX A3                           //pin number for TX output - Arduino into GPS
-#define GPSRX A2                           //pin number for RX input - To Arduino from GPS
+#define GPSTX A2                           //pin number for TX output - Arduino into GPS
+#define GPSRX A3                           //pin number for RX input - To Arduino from GPS
 #define LED1 8                             //pin number for LED                          
 
 
