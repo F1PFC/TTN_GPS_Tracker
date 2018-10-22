@@ -1,4 +1,4 @@
-# TTN\_GPS\_Tracker\_Setup\_Instructions
+# TTN GPS Tracker Setup Instructions
 
 
 These instructions describe the building of a GPS tracker that uses The
@@ -41,19 +41,11 @@ This TTN\_GPS\_Tracker uses an 868Mhz LoRa device and any of the LoRaTracker boa
 ---
 
 
-## Building the TTN\_GPS\_Tracker
+## The Arduino Environment and Libraries
 
+This project does require a knowledge of how to install and use the Arduino Integrated Development Environment (IDE). You will need to know how to install it, how to load sketches, how to configure it for your Arduino board and how to install 3rd party libraries. There are numerous Arduino tutorials to be found on the Internet if your stuck.  
 
-Before loading and running the specific TTN\_GPS\_Tracker code on our
-node it is essential to test out the separate component parts of the
-tracker, specifically the GPS and the LoRa device. If you do not assure
-yourself that these components are working before trying to run the
-TTN\_GPS\_Tracker code, if you then have problems you will have
-difficulty working out what the problems are.
-
-## Arduino Libraries
-
-The tracker program itself and some of the test programs need some third party Arduino libraries installed, these are noted in the program listings and here;
+The tracker program itself and some of the test programs do need some third party Arduino libraries installed, these are noted in the program listings and here;
 
 LMIC Library;   [https://github.com/matthijskooijman/arduino-lmic](https://github.com/matthijskooijman/arduino-lmic )
 
@@ -66,6 +58,18 @@ And if you want to add a display to the tracker you will need one of these libra
 NewLiquidCrystal Library (version 1.3.4); [https://bitbucket.org/fmalpartida/new-liquidcrystal/downloads/](https://bitbucket.org/fmalpartida/new-liquidcrystal/downloads/)
 
 SSD1306 Ascii Library; [https://github.com/greiman/SSD1306Ascii](https://github.com/greiman/SSD1306Ascii)
+
+
+
+## Building the TTN GPS Tracker
+
+
+Before loading and running the specific TTN\_GPS\_Tracker code on our
+node it is essential to test out the separate component parts of the
+tracker, specifically the GPS and the LoRa device. If you do not assure
+yourself that these components are working before trying to run the
+TTN\_GPS\_Tracker code, if you then have problems you will have
+difficulty working out what the problems are.
 
 
 ## Testing the GPS
@@ -421,7 +425,7 @@ The Arduino IDE will see the //characters as a comment and ignore the rest of th
 You have completed your node configuration. You can now load the tracker program and test it.
 
 
-## Loading the TTN\_GPS\_Tracker program
+## Loading the TTN GPS Tracker program
 
 
 With the NWKSKEY, APPSKEY and DEVADDR entered into the configuration.h
@@ -576,7 +580,7 @@ To simulate the effect of a moving balloon tracker I programmed the tracker, sti
 <br><br>
 
 
-## TTN\_GPS\_Tracker program - Display option
+## TTN GPS Tracker program - Display option
 
 The TTN\_GPS\_Tracker program has the option to display
 information on a local display connected to the Arduino device via an I2C connection, either a 20x4 LCD display or a SSD1306 OLED. The option to enable the display is turned off by default by this line in the configuration.h file;
