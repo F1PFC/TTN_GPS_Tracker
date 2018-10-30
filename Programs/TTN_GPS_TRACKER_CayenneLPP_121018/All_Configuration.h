@@ -30,7 +30,7 @@ const unsigned TX_INTERVAL_SECONDS = 55;        //approximate time between trans
 
 
 //**************************************************************************************************
-// 5) GPS Options
+// 3) GPS Options
 //**************************************************************************************************
 
 static const uint16_t GPSBaud = 9600;            //GPS baud rate
@@ -44,7 +44,7 @@ static const uint16_t GPSBaud = 9600;            //GPS baud rate
 
 
 //**************************************************************************************************
-// 7) Display Settings - Need to define a library to use and screens
+// 4) Display Settings - Need to define a library to use and screens
 //**************************************************************************************************
 
 //#define Use_Display                                      //if your using a display set this option   

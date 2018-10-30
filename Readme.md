@@ -627,7 +627,7 @@ For long life and continued safety a Lipo powered project should turn itself off
 A safer alternative to Lipos is to use say three or four AAA or AA alkaline batteries, these are easy to get and low cost. You can also use NiMh rechargeable versions of the AAA or AA batteries. Another alternative is to use a single LiFePO4 battery, these will supply around 3.3V to a project so they can be connected directly to the VCC of a project and no regulator is needed. The LiFePO4 batteries do not have the same fire risks as Lipos.      
 
 
-##Using the All\_Configuration File 
+## Using the All\_Configuration File 
 
 This document describes how to use the configuration file for the TTN\_GPS\_TRACKER program file. The program file is for the Arduino integrated development environment (IDE). The configuration file has been created so that all configuration for the program and any changes needed are carried out by editing this file. When you load the  program file in the Arduino IDE the All\_Configuration.h file should appear on the second tab from the left in the IDE. You should not need to make changes to the program file itself. 
 The configuration file uses a series of #defines and constant definitions that the compiler recognises and uses when building (compiling)  the working program. In general the defines are either commented in or commented out, an example will explain, for instance look at these lines from the 1) Hardware related definitions and options section of the settings file;
@@ -656,7 +656,7 @@ Some parameters are set with constant definitions. For example from GPS section 
 
 This constant sets the baud rate for the GPS you are using. Each section of the configuration file is now described in turn.
 
-###1) Hardware related definitions and options 
+### 1) Hardware related definitions and options 
 
 There is a definition file for each of the LoRaTracker board types, these definition files specify which pins on the board perform a particular function for instance most all definition files have a line like this;
 
@@ -690,7 +690,7 @@ Section 1) of the All\_Configuration.h file also contains these two lines;
 Some LoRaTracker boards, such as the  LCD\_Receiver\_Board use Mikrobus modules for the LoRa device and GPS, The two  #define lines above allocate the appropriate pin definitions depending on which Mikrobus socket the LoRa module and GPS is in. The LoRa device is normally in MB1 and the GPS in MB2. The HAB3 board does not use Mikrobus sockets. 
 
  
-###2) Program Options - Keys for LoRaWAN etc.
+### 2) Program Options - Keys for LoRaWAN etc.
 This is the section where you enter the keys for the TTN connection, NWKSKEY the network session key,   APPSKEY the application key and  DEVADDR the device address. 
 
 When entering the keys be sure that the format remains the same, all the 0x00 sections are replaced with the values of your keys and are in the same format. 
@@ -699,7 +699,7 @@ This section also contains the nominal transmission (into the TTN) interval. The
 
   
 
-###3) GPS Options
+### 3) GPS Options
 Define the GPS baud rate here, often it will be 9600 baud, but not always.
     
     static const uint32_t GPSBaud = 9600;            
@@ -718,7 +718,7 @@ And change the test location if you choose to by editing these lines.
     #define TestAltitude 886
 
 
-###4) Display Settings
+### 4) Display Settings
 The  TTN\_GPS\_TRACKER has an option to attach a I2C display, either a SSD1306 or a 20x4 LCD based using the HD44780 controller and fitted with a PCF8574 I2C driver board. 
 To use either display option enable this define by un-commenting it;
 
@@ -752,11 +752,10 @@ Some temporary screens are used to alert the user to some condition, the period 
     const unsigned int screen_delaymS = 2000; 
 
 
-Good Luck
+Good Luck.
 
-
+<br><br>
   
 
 ## Stuart Robinson
-
 ## October 2018
