@@ -45,7 +45,7 @@ This TTN\_GPS\_Tracker uses an 868Mhz LoRa device and any of the LoRaTracker boa
 
 This project does require a knowledge of how to install and use the Arduino Integrated Development Environment (IDE). You will need to know how to install it, how to load sketches, how to configure it for your Arduino board and how to install 3rd party libraries. There are numerous Arduino tutorials to be found on the Internet if your stuck.  
 
-The tracker program itself and some of the test programs do need some third party Arduino libraries installed, these are noted in the program listings and here;
+The tracker program itself and some of the test programs do need third party Arduino libraries installed, these are noted in the program listings and here;
 
 LMIC Library;   [https://github.com/matthijskooijman/arduino-lmic](https://github.com/matthijskooijman/arduino-lmic )
 
@@ -443,7 +443,7 @@ With the tracker program loaded and power applied to the tracker, observe the st
     Waiting for Startup GPS Fix
 
 
-Note that the program has stopped waiting for the GPS to get a fix, and the LED is on. This wait is by design, we do not want the tracker sending erroneous GPS information if it is not working properly. With the GPS outside with a good view of the sky the GPS should get a fix, the LED will go off and the serial monitor should report something like this;
+Note that the program has stopped waiting for the GPS to get a fix, and the LED is on. When the tracker is waiting for a GPS fix for the first time after power up the LED will blink twice approximately every 5 seconds.  This wait is by design, we do not want the tracker sending erroneous GPS information if it is not working properly. With the GPS outside with a good view of the sky the GPS should get a fix, the LED will go off and the serial monitor should report something like this;
 
 
     TTN_GPS_TRACKER

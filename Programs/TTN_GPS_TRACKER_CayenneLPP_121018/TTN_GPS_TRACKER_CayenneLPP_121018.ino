@@ -1,4 +1,4 @@
-//TN_GPS_TRACKER_CayenneLPP_121018.ino
+//TTN_GPS_TRACKER_CayenneLPP_121018.ino
 
 //**************************************************************************************************
 // Important Note:
@@ -7,8 +7,8 @@
 //
 // Configuration changes should be made in the configuration.h file not here !
 //
-// See seperate document 'Configuring the TTN_GPS_TRACKER.PDF' for information on setting up the 
-// configuration.h file. 
+// See seperate document 'Using the All_Configuration File.pdf' for information on setting up the 
+// All_Configuration.h file. 
 //
 //**************************************************************************************************
 
@@ -29,7 +29,7 @@
   Added GPSwaitfix before program starts.
   Remove print of GPS output to monitor
   Change get_coords() to always wait for new GPS fix
-  Add option to attache a I2C LCD display via a PCG8274 backpack
+  Add option to attache a I2C LCD display via a PCF8274 backpack
   Add option to attach a SSD1306 OLED display 
 
 *********************************************************************/
@@ -41,7 +41,7 @@
 #include <lmic.h>                                 //https://github.com/matthijskooijman/arduino-lmic 
 #include <hal/hal.h>                              //https://github.com/matthijskooijman/arduino-lmic
 
-#include "configuration.h"
+#include "All_Configuration.h"
 
 #include <SPI.h>                                  //standard Arduino library
 #include <TinyGPS++.h>                            //https://github.com/mikalhart/TinyGPSPlus
