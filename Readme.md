@@ -45,7 +45,7 @@ This TTN\_GPS\_Tracker uses an 868Mhz LoRa device and any of the LoRaTracker boa
 
 This project does require a knowledge of how to install and use the Arduino Integrated Development Environment (IDE). You will need to know how to install it, how to load sketches, how to configure it for your Arduino board and how to install 3rd party libraries. There are numerous Arduino tutorials to be found on the Internet if your stuck.  
 
-The tracker program itself and some of the test programs do need third party Arduino libraries installed, these are noted in the program listings and here;
+The tracker program itself and some of the test programs need a few third party Arduino libraries installed, these are noted in the program listings and here;
 
 LMIC Library;   [https://github.com/matthijskooijman/arduino-lmic](https://github.com/matthijskooijman/arduino-lmic )
 
@@ -389,7 +389,7 @@ There is now a 'Network Session Key' and 'App Session Key' boxes displayed. We n
 Click on the eye button (highlighted) to see the actual key and the \<\> (highlighted) to see the keys in a format that we will need to copy into the Arduino TTN\_Node\_Test program. Click on the button to the right of the Key (highlighted), it will copy the Respective key into the clipboard so that we can then paste it into the program.
 
 Open the TTN\_GPS\_Tracker.ino program in the Arduino IDE and find these
-lines in the configuration.h file, section '2) Program Options';
+lines in the All\_Configuration.h file, section '2) Program Options';
 
 **NWKSKEY**\[16\] =
 {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
@@ -412,7 +412,7 @@ The console will also have generated a device address so we need to copy the Dev
 
  11 22 33 AA 
 
-you need to change is so that the relevant line in the configuration.h file look like this;
+you need to change is so that the relevant line in the All\_Configuration.h file look like this;
 
 DEVADDR = 0x112233AA;  
 
@@ -428,8 +428,8 @@ You have completed your node configuration. You can now load the tracker program
 ## Loading the TTN GPS Tracker program
 
 
-With the NWKSKEY, APPSKEY and DEVADDR entered into the configuration.h
-file load the TTN_GPS_Tracker program onto your board. There are some options that can be selected to use a GPS test location and add a display to the tracker, but these are turned off by default, see the section on 'Program Options' later on if you want to use these functions.
+With the NWKSKEY, APPSKEY and DEVADDR entered into the All\_Configuration.h
+file load the TTN\_GPS\_Tracker program onto your board. There are some options that can be selected to use a GPS test location and add a display to the tracker, but these are turned off by default, see the section on 'Program Options' later on if you want to use these functions.
 
 ## Running the tracker program
 
@@ -457,7 +457,7 @@ Note that the program has stopped waiting for the GPS to get a fix, and the LED 
 
 
 To see if the location data from your tracker is getting into  the Things Network, login to your TTN account and goto the console. Select
-applications and then (for this example) select the TTN\_GPS_Tracker\_application, you should see this screen;
+applications and then (for this example) select the TTN\_GPS\_Tracker\_application, you should see this screen;
 
 <br><br>
 <img src="/Pictures/25.jpg" width="650"/>
@@ -580,12 +580,17 @@ To simulate the effect of a moving balloon tracker I programmed the tracker, sti
 <br><br>
 
 
-## TTN GPS Tracker program - Display option
+## Program Options - TTN GPS Tracker program
+
+There are changes that can be made to the programs functions and options by making changes to the 'All\_Configuration.h' file before compiling and loading the program into the tracker, a full description of the changes you can make in the configuration file is listed below in the 'Using the All\_Configuration File', but some of the basic changes are described here in brief. 
+
+
+###Display option
 
 The TTN\_GPS\_Tracker program has the option to display
-information on a local display connected to the Arduino device via an I2C connection, either a 20x4 LCD display or a SSD1306 OLED. The option to enable the display is turned off by default by this line in the configuration.h file;
+information on a local display connected to the Arduino device via an I2C connection, either a 20x4 LCD display or a SSD1306 OLED. The option to enable the display is turned off by default by this line in the All\_Configuration.h file;
 
-//#define Use_Display
+    //#define Use_Display
 
 The two // characters turn the text that follows into a comment which is
 ignored by the Arduino compiler. To enable the display option you need to remove the two // characters in front of the define line. 
@@ -620,6 +625,135 @@ If your tracker is small you may be tempted to use a small battery, in particula
 For long life and continued safety a Lipo powered project should turn itself off when the battery goes below around 3.0V, but very few DIY projects have this capability built in. Of course for the obvious safety reasons most commercial applications that use Lipos, such a mobile phones, tablets, laptop PCs etc, do have this protection built in. 
 
 A safer alternative to Lipos is to use say three or four AAA or AA alkaline batteries, these are easy to get and low cost. You can also use NiMh rechargeable versions of the AAA or AA batteries. Another alternative is to use a single LiFePO4 battery, these will supply around 3.3V to a project so they can be connected directly to the VCC of a project and no regulator is needed. The LiFePO4 batteries do not have the same fire risks as Lipos.      
+
+
+##Using the All\_Configuration File 
+
+This document describes how to use the configuration file for the TTN\_GPS\_TRACKER program file. The program file is for the Arduino integrated development environment (IDE). The configuration file has been created so that all configuration for the program and any changes needed are carried out by editing this file. When you load the  program file in the Arduino IDE the All\_Configuration.h file should appear on the second tab from the left in the IDE. You should not need to make changes to the program file itself. 
+The configuration file uses a series of #defines and constant definitions that the compiler recognises and uses when building (compiling)  the working program. In general the defines are either commented in or commented out, an example will explain, for instance look at these lines from the 1) Hardware related definitions and options section of the settings file;
+
+    #define Board_Definition "HAB3_Board_Definitions.h"   
+    //#define Board_Definition "LCD_Receiver_Board_Definitions.h"  
+    //#define Board_Definition "Pro_Mini_Mikrobus_Shield_Board_Definitions.h" 
+    //#define Board_Definition "Custom_Board_Definitions.h" 
+
+
+The first #define Board\_Definition is commented in and within the program itself there is a bit of code that says include the hardware definitions file HAB3\_Board\_Definitions.h when the program is complied. This hardware definitions file contains the required pin definitions for the HAB3 board in use.
+
+If we want to compile the program for a different board, say the LCD Receiver board, we would comment out the HAB3\_Board\_Definitions.h file by adding two // characters at the start of its line and then removing the two // characters at the start of the LCD\_Receive\r_Board\_Definitions.h line. The lines would then look like this;
+
+    //#define Board_Definition "HAB3_Board_Definitions.h"   
+    #define Board_Definition "LCD_Receiver_Board_Definitions.h"  
+    //#define Board_Definition Pro_Mini_Mikrobus_Shield_Board_Definitions.h" 
+    //#define Board_Definition "Custom_Board_Definitions.h" 
+
+You can use the TTN\_GPS\_TRACKER program for other Arduino hardware setups, but you will need to edit the Custom\_Board\_Definitions.h file to match your pin connections and then  #include it.  
+
+Some parameters are set with constant definitions. For example from GPS section of the All\_Configuration file. 
+
+
+    static const  uint16_t  GPSBaud = 9600;//GPS baud rate 
+
+This constant sets the baud rate for the GPS you are using. Each section of the configuration file is now described in turn.
+
+###1) Hardware related definitions and options 
+
+There is a definition file for each of the LoRaTracker board types, these definition files specify which pins on the board perform a particular function for instance most all definition files have a line like this;
+
+    #define LED1 8
+
+This means the board LED is on pin 8. Thus when the program turns on the LED such as with this line;
+
+
+    digital.Write(LED1, HIGH);
+
+The program knows to set pin 8 high, which turns on the LED.
+
+Using pin definitions in this way makes the programs easier to understand and adapt for different hardware setups.. 
+
+The  TTN\_GPS\_TRACKER\_CayenneLPP program has 4 pre-made definition files for the LoRaTracker boards;
+
+    LCD_Receiver_Board_Definitions.h
+    HAB3_Board_Definitions.h
+    Pro_Mini_Mikrobus_Shield_Board_Definitions.h
+    Custom_Board_Definitions.h
+
+The Custom\_Board\_Definitions.h file allows you to create the pin allocations for a non LoRaTracker board. 
+
+Within Section 1) to define which board definition file to use, remove the two // characters in front of the # define line for the board you are using. Only ‘comment in’ the define for one of the hardware definition files. 
+
+Section 1) of the All\_Configuration.h file also contains these two lines;
+
+    #define LoRa_Device_in_MB1 
+    #define GPS_in_MB2                                                      
+
+Some LoRaTracker boards, such as the  LCD\_Receiver\_Board use Mikrobus modules for the LoRa device and GPS, The two  #define lines above allocate the appropriate pin definitions depending on which Mikrobus socket the LoRa module and GPS is in. The LoRa device is normally in MB1 and the GPS in MB2. The HAB3 board does not use Mikrobus sockets. 
+
+ 
+###2) Program Options - Keys for LoRaWAN etc.
+This is the section where you enter the keys for the TTN connection, NWKSKEY the network session key,   APPSKEY the application key and  DEVADDR the device address. 
+
+When entering the keys be sure that the format remains the same, all the 0x00 sections are replaced with the values of your keys and are in the same format. 
+
+This section also contains the nominal transmission (into the TTN) interval. The actual interval will be about 5 seconds longer. 
+
+  
+
+###3) GPS Options
+Define the GPS baud rate here, often it will be 9600 baud, but not always.
+    
+    static const uint32_t GPSBaud = 9600;            
+
+For test purposes the program can use a defined test GPS location rather than the real location obtained from the GPS, this can be useful for testing purposes and if you don’t want to reveal your true location for testing purposes.  
+
+To use the test location uncomment this define;
+
+    //#define Use_Test_Location 
+
+And change the test location if you choose to by editing these lines. 
+
+    //Pen-y-Fan summit, Brecon Beacons
+    #define TestLatitude 51.88406
+    #define TestLongitude -3.43644
+    #define TestAltitude 886
+
+
+###4) Display Settings
+The  TTN\_GPS\_TRACKER has an option to attach a I2C display, either a SSD1306 or a 20x4 LCD based using the HD44780 controller and fitted with a PCF8574 I2C driver board. 
+To use either display option enable this define by un-commenting it;
+
+    //#define Use_Display
+
+Then enable the define for one of the appropriate display libraries;
+
+
+    #define Display_Library "Display_I2C_LCD2.h"   //20x4 LCD display with PCF8574 backpack    
+    or
+    #define Display_Library "Display_SD1306_AVR.h" //use an SSD1306 I2C display
+
+How the GPS information from the tracker program is displayed on screen is controlled by defining the appropriate display screens library. There are different screen libraries as the two displays used have different numbers of lines and characters.   
+
+
+    #define Display_Screens "I2C_LCD_20x4_Screens.h"   //use the 20x4 LCD Screens     
+    or    
+    #define Display_Screens "SD1306_SMALL_TEXT_Screens.h"
+    
+The two I2C attached displays need an I2C address defined, they can vary from standard, the addresses are defined here;
+
+    const int PCF8574Address = 0x27;   //I2C address of the PCF8574 for 20x4 LCD
+    or    
+    const int I2C_ADDRESS = 0x3C;   //I2C address of the SD13206
+    
+If your unsure of the I2C address of the screen you have attached, run the I2C\_Scanner\_Test program that is in the \Programs directory on the repository downloaded from GITHUB.
+
+Some temporary screens are used to alert the user to some condition, the period these screens are displayed in mS is defined here;
+
+
+    const unsigned int screen_delaymS = 2000; 
+
+
+Good Luck
+
 
   
 
