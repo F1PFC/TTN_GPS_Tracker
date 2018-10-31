@@ -7,7 +7,7 @@
 //
 // Configuration changes should be made in the configuration.h file not here !
 //
-// See seperate document 'Using the All_Configuration File.pdf' for information on setting up the 
+// See the Readme.md file in the Github repository for the details of making chnages to the  
 // All_Configuration.h file. 
 //
 //**************************************************************************************************

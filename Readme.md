@@ -635,6 +635,7 @@ The configuration file uses a series of #defines and constant definitions that t
     #define Board_Definition "HAB3_Board_Definitions.h"   
     //#define Board_Definition "LCD_Receiver_Board_Definitions.h"  
     //#define Board_Definition "Pro_Mini_Mikrobus_Shield_Board_Definitions.h" 
+    //#define Board_Definition "Locator2_Board_Definitions.h"
     //#define Board_Definition "Custom_Board_Definitions.h" 
 
 
@@ -645,7 +646,8 @@ If we want to compile the program for a different board, say the LCD Receiver bo
     //#define Board_Definition "HAB3_Board_Definitions.h"   
     #define Board_Definition "LCD_Receiver_Board_Definitions.h"  
     //#define Board_Definition Pro_Mini_Mikrobus_Shield_Board_Definitions.h" 
-    //#define Board_Definition "Custom_Board_Definitions.h" 
+    //#define Board_Definition "Locator2_Board_Definitions.h"
+    //#define Board_Definition "Custom_Board_Definitions.h"  
 
 You can use the TTN\_GPS\_TRACKER program for other Arduino hardware setups, but you will need to edit the Custom\_Board\_Definitions.h file to match your pin connections and then  #include it.  
 
