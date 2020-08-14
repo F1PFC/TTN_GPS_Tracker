@@ -23,7 +23,7 @@
   Changes:
   Switch to NeoSWSerial library for reading GPS
   Change software serial instance from ss to GPSserial
-  Change pin mapping to accept LoRaTracker board definition files.
+  Change pin mapping to accept Tracker board definition files.
   Add LED1 definition and flashes for watchdog
   Changed payload format to match default in TTN console
   Added GPSwaitfix before program starts.

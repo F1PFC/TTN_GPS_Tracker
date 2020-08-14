@@ -10,7 +10,7 @@ This project uses as its base the code used in this article;
 
 [http://www.thethingsnetwork.org/labs/story/lorawan-gsp-tracker](http://www.thethingsnetwork.org/labs/story/lorawan-gsp-tracker)
 
-There are changes to the software so that the tracker does not work (transmit) unless it has a current GPS fix. There is also an option to add a display to the tracker so that you can see the current location and other status information. The detail of how to configure TTN to accept the tracker and link it to Cayenne for mapping is explained step by step. 
+There are changes to the software above so that the tracker does not work (transmit) unless it has a current GPS fix. There is also an option to add a display to the tracker so that you can see the current location and other status information. The detail of how to configure TTN to accept the tracker and link it to Cayenne for mapping is explained step by step. 
 
 The build and testing of the tracker itself is described first. Then the
 configuration required for TTN is described and finally sending the
@@ -19,7 +19,7 @@ trackers location from TTN into the on-line application Cayenne is described.
 Through the instructions key items to select on screens are shown highlighted in red. For some screens the values of keys have been obscured by grey boxes for security reasons. 
 
 The tracker node is a standard Arduino device with a GPS attached. An
-Arduino Pro Mini 3.3V is recommended. You could use other Arduinos such as the 5V UNO but then you will need logic level conversion for all the LoRa and GPS pins. 
+Arduino Pro Mini 3.3V is recommended. You could use other Arduinos such as the 5V UNO but then you will need logic level conversion for all the LoRa and GPS pins. Note that whilst the tracker software will fit in an ATmega328 based Arduino, there wont be a lot of flash or memory left for additional functions. 
 
 The tracker software parses the location information from the GPS and sends it as latitude and longitude using the LoRa device into the TTN network. There
 must therefore be a TTN gateway within reach of the tracker node. When
@@ -34,9 +34,9 @@ environment and has been tested and runs on the Atmega328P. Remember that
 the GPS and LoRa device are 3.3V logic devices, this is the reason a
 3.3V Arduino Pro mini is the recommended device.
 
-This TTN\_GPS\_Tracker uses an 868Mhz LoRa device and any of the LoRaTracker boards that can take a Hope RFM98 device can be used, including the high altitude balloon tracker. You can find details of the LoRaTracker boards on the 'BUY' page here;
+This TTN\_GPS\_Tracker uses an 868Mhz LoRa device and any of the Tracker boards that can take a Hope RFM98 device can be used, including the high altitude balloon tracker. You can find details of the Tracker boards on the 'BUY' page here;
 
-<http://www.loratracker.uk>
+<>
 
 ---
 
@@ -97,12 +97,12 @@ connected to, see these two defines at the start of the Echo GPS test program;
 Also define the pin number that the LED is connected to, it will be used
 by the TTN\_GPS\_Tracker code. 
 
-Some of the LoRaTracker boards allow the
+Some of the Tracker boards allow the
 GPS to be powered off (such as the LCD receiver) if your board has this
 facility you need to define the pin used to control the GPS power,
 putting this pin low turns on the GPS;
 
-\#define GPSPOWER 7 //not used pin for non LoRaTracker boards
+\#define GPSPOWER 7 //not used pin for non Tracker boards
 
 If your board does not have this capability define the pin as -1
 
@@ -291,7 +291,7 @@ can only consist of lowercase alphanumeric characters, with no
 consecutive -- or \_ characters and it cannot start or end with a - or a
 \_ .
 
-We call our application; 'TTN\_GPS\_Tracker'
+We call our application; 'ttn\_gps\_tracker'
 <br><br>
 <img src="/Pictures/5.jpg" width="650"/>
 <br><br>
@@ -477,44 +477,39 @@ Application data packets arriving, click on a line to expand and show the data f
 ## Create a Cayenne Account
 
 
-Goto http://www.mydevices.com\ and select 'Sign up for Free'
+Goto [myDevices](https://accounts.mydevices.com/auth/realms/cayenne/protocol/openid-connect/auth?response_type=code&scope=email+profile&client_id=cayenne-web-app&state=dzynyCVzyKYs3A4ms2ve1MFLPui62Cp9guINWH5l&redirect_uri=https%3A%2F%2Fcayenne.mydevices.com%2Fauth%2Fcallback) and select login to an existing account or 'Sign Up' to create an account. 
 
 <br><br>
 <img src="/Pictures/26.jpg" width="650"/>
 <br><br>
 
-
-provide the details to create your account;
-
-
-<br><br>
-<img src="/Pictures/27.jpg" width="650"/>
-<br><br>
-
-Select 'All Devices'
+If this is a new account, you will have no devices configured so select  'All Devices' from the screen below;
 
 <br><br>
 <img src="/Pictures/29.jpg" width="650"/>
 <br><br>
 
+If you already have an account the login and you should go to the myDevices dashboard and select 'Add new' on the top left of the dashboard, then select 'Device widget'.   
 
-
-
-You should see the 'Devices and Widgets' screen, scroll down till you find the 'The Things Network'. and select it.
-
-<br><br>
-<img src="/Pictures/30.jpg" width="650"/>
-<br><br>
-
-
-On the next screen locate 'Cayenne LPP' and select it.
+Then scroll down till you find the 'The Things Network' and select it
 
 <br><br>
 <img src="/Pictures/31.jpg" width="650"/>
 <br><br>
 
+You should see the 'Devices and Widgets' screen;
 
-In the next screen get the DevEUI we saved earlier and enter it in the DevEUI box, then select 'ADD Device'   
+<br><br>
+<img src="/Pictures/28.jpg" width="650"/>
+<br><br>
+
+Type LPP into the search box to and select the Cayenne LPP widget 
+
+<br><br>
+<img src="/Pictures/30.jpg" width="650"/>
+<br><br>
+
+For the next screen get the DevEUI we saved earlier and enter it in the DevEUI box, then select 'ADD Device'   
 
 
 <br><br>
@@ -571,6 +566,8 @@ Go back to the Cayenne dashboard and with in a few seconds of the packet being s
 <br><br>
 <img src="/Pictures/38.jpg" width="650"/>
 <br><br>
+
+If you don't see the trackers location on the map drop down the Cayenne LPP box just below 'Add new' button at the top left of the screen and select GPS from the list under Cayenne LPP. 
 
 To simulate the effect of a moving balloon tracker I programmed the tracker, still in my workshop, to send a test series of location packets, see below;
 
@@ -639,9 +636,9 @@ The configuration file uses a series of #defines and constant definitions that t
     //#define Board_Definition "Custom_Board_Definitions.h" 
 
 
-The first #define Board\_Definition is commented in and within the program itself there is a bit of code that says include the hardware definitions file HAB3\_Board\_Definitions.h when the program is complied. This hardware definitions file contains the required pin definitions for the HAB3 board in use.
+The first #define Board\_Definition is commented in and within the program itself there is a bit of code that says include the hardware definitions file HAB3\_Board\_Definitions.h when the program is complied. This hardware definitions file contains the required pin definitions for the Tracker HAB3 board in use.
 
-If we want to compile the program for a different board, say the LCD Receiver board, we would comment out the HAB3\_Board\_Definitions.h file by adding two // characters at the start of its line and then removing the two // characters at the start of the LCD\_Receive\r_Board\_Definitions.h line. The lines would then look like this;
+If we want to compile the program for a different LoRaTraker board, say the LCD Receiver board, we would comment out the HAB3\_Board\_Definitions.h file by adding two // characters at the start of its line and then removing the two // characters at the start of the LCD\_Receive\r_Board\_Definitions.h line. The lines would then look like this;
 
     //#define Board_Definition "HAB3_Board_Definitions.h"   
     #define Board_Definition "LCD_Receiver_Board_Definitions.h"  
@@ -649,7 +646,7 @@ If we want to compile the program for a different board, say the LCD Receiver bo
     //#define Board_Definition "Locator2_Board_Definitions.h"
     //#define Board_Definition "Custom_Board_Definitions.h"  
 
-You can use the TTN\_GPS\_TRACKER program for other Arduino hardware setups, but you will need to edit the Custom\_Board\_Definitions.h file to match your pin connections and then  #include it.  
+You can use the TTN\_GPS\_TRACKER program for other Arduino hardware setups (i.e. not a Tracker board) but you will need to edit the Custom\_Board\_Definitions.h file to match your own boards pin connections and then #include it as described above.  
 
 Some parameters are set with constant definitions. For example from GPS section of the All\_Configuration file. 
 
@@ -660,7 +657,7 @@ This constant sets the baud rate for the GPS you are using. Each section of the 
 
 ### 1) Hardware related definitions and options 
 
-There is a definition file for each of the LoRaTracker board types, these definition files specify which pins on the board perform a particular function for instance most all definition files have a line like this;
+There is a definition file for each of the Tracker board types, these definition files specify which pins on the board perform a particular function for instance most all definition files have a line like this;
 
     #define LED1 8
 
@@ -671,16 +668,16 @@ This means the board LED is on pin 8. Thus when the program turns on the LED suc
 
 The program knows to set pin 8 high, which turns on the LED.
 
-Using pin definitions in this way makes the programs easier to understand and adapt for different hardware setups.. 
+Using pin definitions in this way makes the programs easier to understand and adapt for different hardware setups. 
 
-The  TTN\_GPS\_TRACKER\_CayenneLPP program has 4 pre-made definition files for the LoRaTracker boards;
+The  TTN\_GPS\_TRACKER\_CayenneLPP program has 4 pre-made definition files for the Tracker boards;
 
     LCD_Receiver_Board_Definitions.h
     HAB3_Board_Definitions.h
     Pro_Mini_Mikrobus_Shield_Board_Definitions.h
     Custom_Board_Definitions.h
 
-The Custom\_Board\_Definitions.h file allows you to create the pin allocations for a non LoRaTracker board. 
+The Custom\_Board\_Definitions.h file allows you to create the pin allocations for a non Tracker board. 
 
 Within Section 1) to define which board definition file to use, remove the two // characters in front of the # define line for the board you are using. Only ‘comment in’ the define for one of the hardware definition files. 
 
@@ -689,7 +686,7 @@ Section 1) of the All\_Configuration.h file also contains these two lines;
     #define LoRa_Device_in_MB1 
     #define GPS_in_MB2                                                      
 
-Some LoRaTracker boards, such as the  LCD\_Receiver\_Board use Mikrobus modules for the LoRa device and GPS, The two  #define lines above allocate the appropriate pin definitions depending on which Mikrobus socket the LoRa module and GPS is in. The LoRa device is normally in MB1 and the GPS in MB2. The HAB3 board does not use Mikrobus sockets. 
+Some Tracker boards, such as the  LCD\_Receiver\_Board use Mikrobus modules for the LoRa device and GPS, The two  #define lines above allocate the appropriate pin definitions depending on which Mikrobus socket the LoRa module and GPS is in. The LoRa device is normally in MB1 and the GPS in MB2. The HAB3 board does not use Mikrobus sockets. 
 
  
 ### 2) Program Options - Keys for LoRaWAN etc.
@@ -706,7 +703,7 @@ Define the GPS baud rate here, often it will be 9600 baud, but not always.
     
     static const uint32_t GPSBaud = 9600;            
 
-For test purposes the program can use a defined test GPS location rather than the real location obtained from the GPS, this can be useful for testing purposes and if you don’t want to reveal your true location for testing purposes.  
+For test purposes the program can use a defined test GPS location for transmission rather than the real current location obtained from the GPS, this can be useful for testing purposes and if you don’t want to reveal your true location whilst testing.  
 
 To use the test location uncomment this define;
 
@@ -721,7 +718,7 @@ And change the test location if you choose to by editing these lines.
 
 
 ### 4) Display Settings
-The  TTN\_GPS\_TRACKER has an option to attach a I2C display, either a SSD1306 or a 20x4 LCD based using the HD44780 controller and fitted with a PCF8574 I2C driver board. 
+The  TTN\_GPS\_TRACKER program has an option to attach a I2C display, either a SSD1306 or a 20x4 LCD based using the HD44780 controller and fitted with a PCF8574 I2C driver board. 
 To use either display option enable this define by un-commenting it;
 
     //#define Use_Display
@@ -753,8 +750,11 @@ Some temporary screens are used to alert the user to some condition, the period 
 
     const unsigned int screen_delaymS = 2000; 
 
+### Note:
+Whilst you can do some debugging, the GPS tests for instance with just the USB serial programming adapter powering the your board, do not be surprised if the board resets when the LoRa device starts to transmit.  
 
-Good Luck.
+
+### Good Luck.
 
 <br><br>
   

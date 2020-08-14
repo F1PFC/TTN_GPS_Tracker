@@ -5,11 +5,11 @@
 
 /*
 *****************************************************************************************************************************
-LoRaTracker Test Programs
+Tracker Test Programs
 
 Copyright of the author Stuart Robinson - 10/10/2018
 
-http://www.LoRaTracker.uk
+
 
 These programs may be used free of charge for personal, recreational and educational purposes only.
 

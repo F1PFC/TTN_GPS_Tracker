@@ -1,0 +1,8 @@
+login as: root
+password: 1qaz2wsx
+
+tail -f /var/log/syslog
+
+tcpdump -i eth0 'port 1700'
+
+Reboot gateway; sudo reboot

@@ -5,10 +5,10 @@
 // 1) Hardware related definitions and options - specify board definition file type here
 //**************************************************************************************************
 
-#define Board_Definition "HAB3_Board_Definitions.h"                        //if your using a LoRaTracker HAB3 Board enable this define 
-//#define Board_Definition "LCD_Receiver_Board_Definitions.h"              //if your using a LoRaTracker LCD Receiver enable this define
-//#define Board_Definition "Pro_Mini_Mikrobus_Shield_Board_Definitions.h"  //if your using a LoRaTracker Pro Mini Mikrobus Shield enable this define
-//#define Board_Definition "Locator2_Board_Definitions.h"                  //if your using a LoRaTracker Locator2 Board enable this define
+#define Board_Definition "HAB3_Board_Definitions.h"                        //if your using a Tracker HAB3 Board enable this define 
+//#define Board_Definition "LCD_Receiver_Board_Definitions.h"              //if your using a Tracker LCD Receiver enable this define
+//#define Board_Definition "Pro_Mini_Mikrobus_Shield_Board_Definitions.h"  //if your using a Tracker Pro Mini Mikrobus Shield enable this define
+//#define Board_Definition "Locator2_Board_Definitions.h"                  //if your using a Tracker Locator2 Board enable this define
 //#define Board_Definition "Custom_Board_Definitions.h"                    //if your using a custom board enable this define and setup the Custom_Board_Definitions.h file
 
 #define LoRa_Device_in_MB1                                                  //needed for Mikrobus based boards

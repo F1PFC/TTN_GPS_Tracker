@@ -2,11 +2,11 @@
 /*
 **************************************************************************************************
 
-  Easy Build LoRaTracker Programs for Arduino
+  Easy Build Tracker Programs for Arduino
 
   Copyright of the author Stuart Robinson - 10/10/2018
 
-  http://www.LoRaTracker.uk
+  
 
   These programs may be used free of charge for personal, recreational and educational purposes only.
 
@@ -81,7 +81,7 @@ void writescreen_5()
   Display_SetCurPos(0, 1);
   disp.print(F(dateproduced));
   Display_SetCurPos(0, 2);
-  disp.print(F("www.LoRaTracker.uk"));
+  disp.print(F("www.Tracker.uk"));
 }
 
 
